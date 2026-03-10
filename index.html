@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wolf Cloud Test</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .card {
+      text-align: center;
+      background: #1e293b;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+    p {
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+    .badge {
+      display: inline-block;
+      background: #22c55e;
+      color: #052e16;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #93c5fd;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
+  <div class="card">
+    <div class="badge">Online</div>
+    <h1>Wolf Cloud Test Page</h1>
+    <p>If you can see this page, Cloudflare Tunnel, Coolify, and your domain routing are working.</p>
+    <a href="https://coolify.wolfdeveloping.au">Open Coolify Panel</a>
+  </div>
 </body>
 </html>
