@@ -21,6 +21,7 @@ const files = {
   "/": { file: "index.html", type: "text/html; charset=utf-8" },
   "/index.html": { file: "index.html", type: "text/html; charset=utf-8" },
   "/image5.webp": { file: "image5.webp", type: "image/webp" },
+  "/gallery.html": { file: "gallery.html", type: "text/html; charset=utf-8" },
 };
 
 function sendJson(response, statusCode, payload) {
@@ -224,7 +225,7 @@ const server = http.createServer(async (request, response) => {
   }
 
   if (request.method === "GET") {
-    if (url.pathname.startsWith("/photos/")) {
+    if (url.pathname.startsWith("/photos/") || url.pathname.startsWith("/gallery/")) {
       serveStaticAsset(response, url.pathname);
       return;
     }
