@@ -1,58 +1,757 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wolf Cloud Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sheep & Giggles Inc — NDIS Supported Farm | Fingal, Mornington Peninsula</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sky: #7EC8E3;
+      --sky-light: #b4e0f0;
+      --sky-pale: #e0f2f9;
+      --sky-deep: #4da8cc;
+      --ink: #1a2a3a;
+      --ink-soft: rgba(26, 42, 58, 0.6);
+      --white: #ffffff;
+      --cream: #fdfaf5;
+      --green: #5a9e6f;
+      --green-soft: #e8f5ec;
+      --heart: #e25b6a;
+      --heart-soft: #fdeef0;
+      --radius: 20px;
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(253, 250, 245, 0.82);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid rgba(26, 42, 58, 0.06);
+      transition: box-shadow 300ms var(--ease-smooth);
+    }
+    nav.scrolled { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06); }
+    .nav-brand {
+      font-family: 'Fraunces', serif;
+      font-weight: 700; font-size: 1.2rem;
+      color: var(--ink); text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--ink-soft);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 150ms;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 12px; border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; text-decoration: none;
+      transition: transform 200ms var(--ease-smooth), box-shadow 200ms var(--ease-smooth);
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-donate {
+      background: linear-gradient(135deg, var(--heart), #c94b5a);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(226, 91, 106, 0.3);
+    }
+    .btn-donate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(226, 91, 106, 0.45);
+    }
+    .btn-primary {
+      background: var(--sky);
+      color: var(--ink);
+      box-shadow: 0 4px 20px rgba(126, 200, 227, 0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(126, 200, 227, 0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid rgba(26, 42, 58, 0.15);
+    }
+    .btn-outline:hover {
+      background: rgba(126, 200, 227, 0.1);
+      border-color: var(--sky);
+      transform: translateY(-2px);
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--ink);
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
       min-height: 100vh;
-    }
-    .card {
+      display: flex; align-items: center; justify-content: center;
       text-align: center;
-      background: #1e293b;
-      padding: 40px;
-      border-radius: 16px;
-      max-width: 600px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      padding: 8rem 2rem 6rem;
+      position: relative;
+      background: linear-gradient(180deg, var(--sky-pale) 0%, var(--cream) 100%);
+      overflow: hidden;
     }
-    h1 {
-      margin-bottom: 10px;
+    .hero::before {
+      content: '';
+      position: absolute; top: -100px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(126, 200, 227, 0.25), transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -150px; left: -150px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90, 158, 111, 0.12), transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-logo {
+      width: 200px; height: auto;
+      margin-bottom: 2.5rem;
+      animation: floatIn 800ms var(--ease-smooth) both;
+      filter: drop-shadow(0 8px 24px rgba(26, 42, 58, 0.08));
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 800; font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 600ms 200ms var(--ease-smooth) both;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--sky-deep), var(--sky), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.15rem; line-height: 1.7;
+      color: var(--ink-soft);
+      max-width: 580px; margin: 0 auto 2.5rem;
+      animation: fadeInUp 600ms 400ms var(--ease-smooth) both;
+    }
+    .hero-buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeInUp 600ms 600ms var(--ease-smooth) both;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 600ms 100ms var(--ease-smooth) both;
+    }
+    .tag-green { background: var(--green-soft); color: var(--green); }
+
+    /* ─── IMPACT STATS ─── */
+    .impact-bar {
+      background: var(--white);
+      border-top: 1px solid rgba(26, 42, 58, 0.05);
+      border-bottom: 1px solid rgba(26, 42, 58, 0.05);
+      padding: 3.5rem 2rem;
+    }
+    .impact-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .impact-stat h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .impact-stat h3 .num-sky { color: var(--sky-deep); }
+    .impact-stat h3 .num-green { color: var(--green); }
+    .impact-stat h3 .num-heart { color: var(--heart); }
+    .impact-stat p {
+      color: var(--ink-soft); font-size: 0.88rem; font-weight: 500;
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--sky-deep);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -0.02em; line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      color: var(--ink-soft);
+      font-size: 1.05rem; line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ─── MISSION ─── */
+    .mission { background: var(--cream); }
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .mission-visual {
+      background: linear-gradient(135deg, var(--sky-pale), var(--sky-light));
+      border-radius: 24px;
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      gap: 0.75rem;
+      box-shadow: 0 20px 60px rgba(126, 200, 227, 0.2);
+    }
+    .mission-visual .ndis-badge {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 1rem 1.5rem;
+      font-weight: 700; font-size: 1.1rem;
+      color: var(--ink);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .mission-visual .ndis-badge .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+    .mission-visual .emoji-row { font-size: 3.5rem; margin-top: 0.5rem; }
+    .mission-text .section-desc { margin-bottom: 1.5rem; }
+    .mission-text ul {
+      list-style: none; margin-bottom: 2rem;
+    }
+    .mission-text li {
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      display: flex; align-items: flex-start; gap: 0.75rem;
+    }
+    .mission-text li .check {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--green-soft);
+      color: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700;
+      margin-top: 1px;
+    }
+
+    /* ─── PILLARS ─── */
+    .pillars { background: var(--white); }
+    .pillars-header { text-align: center; margin-bottom: 4rem; }
+    .pillars-header .section-desc { margin: 0 auto; }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+    .pillar-card {
+      background: var(--cream);
+      border: 1px solid rgba(26, 42, 58, 0.05);
+      border-radius: var(--radius);
+      padding: 2.25rem 2rem;
+      transition: transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth);
+    }
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    }
+    .pillar-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .pillar-icon.sky { background: linear-gradient(135deg, var(--sky-pale), rgba(126, 200, 227, 0.3)); }
+    .pillar-icon.green { background: linear-gradient(135deg, var(--green-soft), rgba(90, 158, 111, 0.25)); }
+    .pillar-icon.heart { background: linear-gradient(135deg, var(--heart-soft), rgba(226, 91, 106, 0.2)); }
+    .pillar-card h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700; font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+    .pillar-card p {
+      color: var(--ink-soft);
+      font-size: 0.92rem; line-height: 1.65;
+    }
+
+    /* ─── DONATION TIERS ─── */
+    .donations { background: var(--cream); }
+    .donations-header { text-align: center; margin-bottom: 3.5rem; }
+    .donations-header .section-desc { margin: 0 auto; }
+    .donation-tiers {
+      max-width: 900px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .tier-card {
+      background: var(--white);
+      border: 1px solid rgba(26, 42, 58, 0.06);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      transition: transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth), border-color 300ms;
+    }
+    .tier-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+      border-color: var(--sky);
+    }
+    .tier-card.featured {
+      border-color: var(--heart);
+      position: relative;
+    }
+    .tier-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      background: var(--heart);
+      color: var(--white);
+      padding: 0.2rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .tier-amount {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
       font-size: 2.2rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.25rem;
     }
-    p {
-      color: #cbd5e1;
-      margin-bottom: 20px;
+    .tier-name {
+      font-weight: 600; font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
     }
-    .badge {
-      display: inline-block;
-      background: #22c55e;
-      color: #052e16;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: bold;
+    .tier-desc {
+      color: var(--ink-soft);
+      font-size: 0.88rem; line-height: 1.6;
+      margin-bottom: 1.5rem;
     }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      color: #93c5fd;
-      text-decoration: none;
+
+    /* ─── SPONSORS ─── */
+    .supporters {
+      background: var(--white);
+      text-align: center;
+    }
+    .supporters-header { margin-bottom: 3rem; }
+    .supporters-header .section-desc { margin: 0 auto; }
+    .sponsor-grid {
+      max-width: 800px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 1.5rem;
+    }
+    .sponsor-slot {
+      width: 160px; height: 90px;
+      background: var(--cream);
+      border: 1.5px dashed rgba(26, 42, 58, 0.1);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      transition: border-color 200ms, background 200ms;
+    }
+    .sponsor-slot:hover {
+      border-color: var(--sky);
+      background: var(--sky-pale);
+    }
+
+    /* ─── CTA ─── */
+    .cta { padding: 6rem 2rem; }
+    .cta-card {
+      max-width: 900px; margin: 0 auto;
+      background: linear-gradient(135deg, var(--heart), #c94b5a);
+      border-radius: 28px;
+      padding: 4rem 3rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(226, 91, 106, 0.25);
+    }
+    .cta-card::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .cta-card::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -40px;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .cta-card h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      position: relative; z-index: 1;
+    }
+    .cta-card p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.05rem; line-height: 1.6;
+      max-width: 500px; margin: 0 auto 2rem;
+      position: relative; z-index: 1;
+    }
+    .cta-card .btn-white { position: relative; z-index: 1; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 3rem 2rem 2rem;
+      border-top: 1px solid rgba(26, 42, 58, 0.06);
+    }
+    .footer-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 2rem;
+    }
+    .footer-brand-block .footer-brand {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+    .footer-brand-block p {
+      color: var(--ink-soft); font-size: 0.82rem; line-height: 1.6;
+    }
+    .footer-links { display: flex; gap: 3rem; }
+    .footer-links div h4 {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: 0.6rem;
+    }
+    .footer-links div a {
+      display: block; text-decoration: none;
+      color: var(--ink-soft); font-size: 0.85rem;
+      padding: 0.2rem 0;
+      transition: color 150ms;
+    }
+    .footer-links div a:hover { color: var(--ink); }
+    .footer-bottom {
+      max-width: 900px; margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(26, 42, 58, 0.05);
+      text-align: center;
+    }
+    .footer-bottom p {
+      color: var(--ink-soft); font-size: 0.78rem;
+    }
+    .nfp-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--green-soft);
+      color: var(--green);
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.7rem; font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.9); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 600ms var(--ease-smooth), transform 600ms var(--ease-smooth);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── MOBILE ─── */
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .mobile-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--ink); margin: 5px 0;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .mission-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .mission-visual { order: -1; }
+      .hero { padding: 7rem 1.5rem 4rem; min-height: auto; }
+      .hero-logo { width: 150px; }
+      .cta-card { padding: 3rem 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .impact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+      .footer-links { gap: 2rem; }
+      .sponsor-slot { width: 140px; height: 78px; }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="badge">Online</div>
-    <h1>Wolf Cloud Test Page</h1>
-    <p>If you can see this page, Cloudflare Tunnel, Coolify, and your domain routing are working.</p>
-    <a href="https://coolify.wolfdeveloping.au">Open Coolify Panel</a>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-brand">Sheep & Giggles</a>
+    <ul class="nav-links">
+      <li><a href="#mission">Our Mission</a></li>
+      <li><a href="#pillars">What We Do</a></li>
+      <li><a href="#donate">Support Us</a></li>
+      <li><a href="#sponsors">Sponsors</a></li>
+      <li><a href="#donate" class="btn btn-donate">&#9829;&ensp;Donate</a></li>
+    </ul>
+    <button class="mobile-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="245A25C0-6B02-4653-B53F-61D8577744CB.png" alt="Sheep & Giggles Inc Logo" class="hero-logo">
+      <span class="tag tag-green">Registered Not-for-Profit &nbsp;&middot;&nbsp; NDIS Provider</span>
+      <h1>Meaningful Work.<br><span class="accent">Real Opportunities.</span></h1>
+      <p>Sheep &amp; Giggles is a not-for-profit farm in Fingal on the Mornington Peninsula, creating supported employment and life-changing opportunities for NDIS participants &mdash; powered by the generosity of our community.</p>
+      <div class="hero-buttons">
+        <a href="#donate" class="btn btn-donate">&#9829;&ensp;Make a Donation</a>
+        <a href="#mission" class="btn btn-outline">Our Mission</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT BAR -->
+  <div class="impact-bar reveal">
+    <div class="impact-grid">
+      <div class="impact-stat">
+        <h3><span class="num-green">100%</span></h3>
+        <p>Not-for-Profit</p>
+      </div>
+      <div class="impact-stat">
+        <h3><span class="num-sky">NDIS</span></h3>
+        <p>Registered Provider</p>
+      </div>
+      <div class="impact-stat">
+        <h3><span class="num-heart">&#9829;</span></h3>
+        <p>Community Funded</p>
+      </div>
+    </div>
   </div>
+
+  <!-- MISSION -->
+  <section class="mission" id="mission">
+    <div class="container">
+      <div class="mission-grid">
+        <div class="mission-text reveal">
+          <p class="section-label">Our Mission</p>
+          <h2 class="section-title">A Farm Where Everyone Belongs</h2>
+          <p class="section-desc">
+            We believe every person deserves the dignity of meaningful work and genuine connection. Sheep &amp; Giggles partners with the NDIS to provide supported employment, skill-building, and social opportunities in a welcoming farm environment.
+          </p>
+          <ul>
+            <li><span class="check">&#10003;</span> Supported employment pathways for NDIS participants</li>
+            <li><span class="check">&#10003;</span> Hands-on farm skills &mdash; animal care, horticulture &amp; more</li>
+            <li><span class="check">&#10003;</span> Social connection and community belonging</li>
+            <li><span class="check">&#10003;</span> A safe, inclusive space to build confidence &amp; independence</li>
+          </ul>
+          <a href="#donate" class="btn btn-primary">Support Our Work</a>
+        </div>
+        <div class="mission-visual reveal">
+          <div class="ndis-badge"><span class="dot"></span> NDIS Registered Provider</div>
+          <div class="emoji-row">&#x1F411;&#x1F33F;&#x1F91D;</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="pillars" id="pillars">
+    <div class="container">
+      <div class="pillars-header reveal">
+        <p class="section-label">What We Do</p>
+        <h2 class="section-title">Building Futures on the Farm</h2>
+        <p class="section-desc">Every dollar donated helps us expand our programs and welcome more participants into meaningful, supported roles.</p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card reveal">
+          <div class="pillar-icon sky">&#x1F411;</div>
+          <h3>Supported Employment</h3>
+          <p>Real jobs, real responsibility. Participants work alongside our team caring for animals, maintaining paddocks, and running daily farm operations.</p>
+        </div>
+        <div class="pillar-card reveal">
+          <div class="pillar-icon green">&#x1F331;</div>
+          <h3>Skill Development</h3>
+          <p>From animal husbandry to teamwork and time management &mdash; participants gain practical, transferable skills in a supportive setting.</p>
+        </div>
+        <div class="pillar-card reveal">
+          <div class="pillar-icon heart">&#x1F917;</div>
+          <h3>Community &amp; Wellbeing</h3>
+          <p>More than a workplace. Sheep &amp; Giggles is a community where participants build friendships, confidence, and a sense of purpose.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATION TIERS -->
+  <section class="donations" id="donate">
+    <div class="container">
+      <div class="donations-header reveal">
+        <p class="section-label">Support Us</p>
+        <h2 class="section-title">Your Generosity Changes Lives</h2>
+        <p class="section-desc">Every contribution directly funds jobs, training programs, and farm operations. All donations are tax-deductible.</p>
+      </div>
+      <div class="donation-tiers">
+        <div class="tier-card reveal">
+          <div class="tier-amount" style="color: var(--sky-deep);">$25</div>
+          <div class="tier-name">Feed the Flock</div>
+          <p class="tier-desc">Covers a week of animal feed, keeping our farm running and participants learning.</p>
+          <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">Donate $25</a>
+        </div>
+        <div class="tier-card featured reveal">
+          <div class="tier-amount" style="color: var(--heart);">$100</div>
+          <div class="tier-name">Grow a Future</div>
+          <p class="tier-desc">Funds a full week of supported employment for one NDIS participant on the farm.</p>
+          <a href="#" class="btn btn-donate" style="width: 100%; justify-content: center;">Donate $100</a>
+        </div>
+        <div class="tier-card reveal">
+          <div class="tier-amount" style="color: var(--green);">$500</div>
+          <div class="tier-name">Champion Sponsor</div>
+          <p class="tier-desc">Become a named sponsor. Your logo displayed on-site and on our website for 12 months.</p>
+          <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">Become a Sponsor</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSORS -->
+  <section class="supporters" id="sponsors">
+    <div class="container">
+      <div class="supporters-header reveal">
+        <p class="section-label">Our Supporters</p>
+        <h2 class="section-title">Proudly Supported By</h2>
+        <p class="section-desc">These generous businesses and individuals help make our mission possible. Your logo could be here too.</p>
+      </div>
+      <div class="sponsor-grid reveal">
+        <div class="sponsor-slot">Your Logo Here</div>
+        <div class="sponsor-slot">Your Logo Here</div>
+        <div class="sponsor-slot">Your Logo Here</div>
+        <div class="sponsor-slot">Your Logo Here</div>
+        <div class="sponsor-slot">Your Logo Here</div>
+        <div class="sponsor-slot">Your Logo Here</div>
+        <div class="sponsor-slot">Your Logo Here</div>
+        <div class="sponsor-slot">Your Logo Here</div>
+      </div>
+      <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
+        <a href="#donate" class="btn btn-outline">Become a Sponsor</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-card reveal">
+      <h2>Every Dollar Makes a Difference</h2>
+      <p>Help us create more jobs, welcome more participants, and grow a farm where everyone belongs. Your support changes lives.</p>
+      <a href="#donate" class="btn btn-white">&#9829;&ensp;Donate Now</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand-block">
+        <div class="nfp-badge">&#9829; Registered Not-for-Profit</div>
+        <p class="footer-brand">Sheep &amp; Giggles Inc</p>
+        <p>Fingal, Mornington Peninsula<br>Est. 2026</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>Navigate</h4>
+          <a href="#mission">Our Mission</a>
+          <a href="#pillars">What We Do</a>
+          <a href="#donate">Support Us</a>
+          <a href="#sponsors">Sponsors</a>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="mailto:hello@sheepandgiggles.com.au">Email Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Sheep &amp; Giggles Inc. All rights reserved. &nbsp;&middot;&nbsp; All donations are tax-deductible.</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
