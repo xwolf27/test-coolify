@@ -1,0 +1,9 @@
+{
+  "name": "test-coolify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal test backend for the Sheeps and Giggles site",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

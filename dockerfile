@@ -1,3 +1,12 @@
-FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/index.html
-COPY image5.webp /usr/share/nginx/html/image5.webp
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package.json ./
+COPY server.js ./
+COPY index.html ./
+COPY image5.webp ./
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

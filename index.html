@@ -723,6 +723,15 @@
       resize: vertical;
     }
 
+    .form-status {
+      min-height: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .form-status[data-state="success"] { color: var(--green-deep); }
+    .form-status[data-state="error"] { color: var(--heart); }
+
     footer {
       padding: 3rem 2rem 2rem;
       border-top: 1px solid rgba(26, 42, 58, 0.06);
@@ -1125,26 +1134,29 @@
             <li>General Contact<span>hello@sheepsandgiggles.org.au</span></li>
           </ul>
         </div>
-        <form class="contact-form reveal">
+        <form class="contact-form reveal" id="contact-form">
           <div class="form-grid">
             <div class="form-field">
               <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name">
+              <input id="name" name="name" type="text" placeholder="Your name" required>
             </div>
             <div class="form-field">
               <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com">
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
             </div>
             <div class="form-field full">
               <label for="subject">Subject</label>
-              <input id="subject" name="subject" type="text" placeholder="How would you like to get involved?">
+              <input id="subject" name="subject" type="text" placeholder="How would you like to get involved?" required>
             </div>
             <div class="form-field full">
               <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell us a little about your interest in the farm."></textarea>
+              <textarea id="message" name="message" placeholder="Tell us a little about your interest in the farm." required></textarea>
             </div>
             <div class="form-field full">
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <p class="form-status" id="form-status" aria-live="polite"></p>
+            </div>
+            <div class="form-field full">
+              <button type="submit" class="btn btn-primary" id="form-submit">Send Message</button>
             </div>
           </div>
         </form>
@@ -1184,6 +1196,9 @@
     const nav = document.getElementById('nav');
     const navLinks = document.getElementById('nav-links');
     const mobileToggle = document.getElementById('mobile-toggle');
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitButton = document.getElementById('form-submit');
 
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
@@ -1212,6 +1227,42 @@
     }, { threshold: 0.12 });
 
     reveals.forEach((el) => observer.observe(el));
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      formStatus.textContent = 'Sending message...';
+      formStatus.dataset.state = '';
+      submitButton.disabled = true;
+
+      const formData = new FormData(contactForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Something went wrong.');
+        }
+
+        formStatus.textContent = result.message || 'Thanks. Your enquiry has been sent.';
+        formStatus.dataset.state = 'success';
+        contactForm.reset();
+      } catch (error) {
+        formStatus.textContent = error.message;
+        formStatus.dataset.state = 'error';
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
   </script>
 </body>
 </html>
