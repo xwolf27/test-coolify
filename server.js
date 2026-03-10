@@ -7,6 +7,15 @@ const port = Number(process.env.PORT || 3000);
 const web3FormsAccessKey = process.env.WEB3FORMS_ACCESS_KEY || "";
 const rootDir = __dirname;
 const submissions = [];
+const mimeTypes = {
+  ".html": "text/html; charset=utf-8",
+  ".webp": "image/webp",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".js": "application/javascript; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+};
 
 const files = {
   "/": { file: "index.html", type: "text/html; charset=utf-8" },
@@ -34,6 +43,36 @@ function serveFile(response, pathname) {
     }
 
     response.writeHead(200, { "Content-Type": asset.type });
+    response.end(content);
+  });
+}
+
+function serveStaticAsset(response, pathname) {
+  const normalizedPath = path
+    .normalize(pathname)
+    .replace(/^\/+/, "")
+    .replace(/^(\.\.(\/|\\|$))+/, "");
+  const filePath = path.join(rootDir, normalizedPath);
+
+  if (!filePath.startsWith(rootDir)) {
+    sendJson(response, 403, { error: "Forbidden" });
+    return;
+  }
+
+  const extension = path.extname(filePath).toLowerCase();
+  const contentType = mimeTypes[extension];
+  if (!contentType) {
+    sendJson(response, 404, { error: "Not found" });
+    return;
+  }
+
+  fs.readFile(filePath, (error, content) => {
+    if (error) {
+      sendJson(response, 404, { error: "Not found" });
+      return;
+    }
+
+    response.writeHead(200, { "Content-Type": contentType });
     response.end(content);
   });
 }
@@ -185,6 +224,11 @@ const server = http.createServer(async (request, response) => {
   }
 
   if (request.method === "GET") {
+    if (url.pathname.startsWith("/photos/")) {
+      serveStaticAsset(response, url.pathname);
+      return;
+    }
+
     serveFile(response, url.pathname);
     return;
   }
