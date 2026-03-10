@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sheep & Giggles Inc — NDIS Supported Farm | Fingal, Mornington Peninsula</title>
+  <title>Sheeps and Giggles Community Farm</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --sky: #7EC8E3;
+      --sky: #7ec8e3;
       --sky-light: #b4e0f0;
       --sky-pale: #e0f2f9;
       --sky-deep: #4da8cc;
       --ink: #1a2a3a;
-      --ink-soft: rgba(26, 42, 58, 0.6);
+      --ink-soft: rgba(26, 42, 58, 0.7);
       --white: #ffffff;
       --cream: #fdfaf5;
       --green: #5a9e6f;
+      --green-deep: #3d7b54;
       --green-soft: #e8f5ec;
+      --earth: #b8794d;
+      --earth-soft: #f5e8dd;
       --heart: #e25b6a;
       --heart-soft: #fdeef0;
       --radius: 20px;
@@ -37,10 +41,15 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── NAV ─── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 1rem 2.5rem;
       background: rgba(253, 250, 245, 0.82);
       backdrop-filter: blur(24px) saturate(180%);
@@ -48,154 +57,265 @@
       border-bottom: 1px solid rgba(26, 42, 58, 0.06);
       transition: box-shadow 300ms var(--ease-smooth);
     }
+
     nav.scrolled { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06); }
+
     .nav-brand {
       font-family: 'Fraunces', serif;
-      font-weight: 700; font-size: 1.2rem;
-      color: var(--ink); text-decoration: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
       letter-spacing: -0.02em;
     }
-    .nav-links { display: flex; gap: 2rem; align-items: center; list-style: none; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+
     .nav-links a {
-      text-decoration: none; color: var(--ink-soft);
-      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      font-weight: 500;
       transition: color 150ms;
     }
-    .nav-links a:hover { color: var(--ink); }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--ink); }
 
     .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.7rem 1.6rem;
-      border-radius: 12px; border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.78rem 1.65rem;
+      border-radius: 12px;
+      border: none;
       font-family: 'DM Sans', sans-serif;
-      font-weight: 600; font-size: 0.9rem;
-      cursor: pointer; text-decoration: none;
-      transition: transform 200ms var(--ease-smooth), box-shadow 200ms var(--ease-smooth);
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 200ms var(--ease-smooth), box-shadow 200ms var(--ease-smooth), background 200ms var(--ease-smooth);
     }
+
     .btn:active { transform: scale(0.97); }
-    .btn-donate {
-      background: linear-gradient(135deg, var(--heart), #c94b5a);
-      color: var(--white);
-      box-shadow: 0 4px 20px rgba(226, 91, 106, 0.3);
-    }
-    .btn-donate:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(226, 91, 106, 0.45);
-    }
+
     .btn-primary {
       background: var(--sky);
       color: var(--ink);
       box-shadow: 0 4px 20px rgba(126, 200, 227, 0.35);
     }
+
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(126, 200, 227, 0.5);
     }
+
+    .btn-donate {
+      background: linear-gradient(135deg, var(--green), var(--green-deep));
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(90, 158, 111, 0.3);
+    }
+
+    .btn-donate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(90, 158, 111, 0.45);
+    }
+
     .btn-outline {
       background: transparent;
       color: var(--ink);
       border: 1.5px solid rgba(26, 42, 58, 0.15);
     }
+
     .btn-outline:hover {
       background: rgba(126, 200, 227, 0.1);
       border-color: var(--sky);
       transform: translateY(-2px);
     }
+
     .btn-white {
       background: var(--white);
       color: var(--ink);
       font-weight: 700;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
+
     .btn-white:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 32px rgba(0, 0, 0, 0.15);
     }
 
-    /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 5rem;
       position: relative;
-      background: linear-gradient(180deg, var(--sky-pale) 0%, var(--cream) 100%);
+      background:
+        linear-gradient(180deg, rgba(224, 242, 249, 0.85) 0%, rgba(253, 250, 245, 0.92) 100%),
+        url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       overflow: hidden;
     }
+
     .hero::before {
       content: '';
-      position: absolute; top: -100px; right: -200px;
-      width: 600px; height: 600px;
+      position: absolute;
+      top: -100px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(126, 200, 227, 0.25), transparent 70%);
+      background: radial-gradient(circle, rgba(126, 200, 227, 0.24), transparent 70%);
       filter: blur(80px);
       pointer-events: none;
     }
+
     .hero::after {
       content: '';
-      position: absolute; bottom: -150px; left: -150px;
-      width: 500px; height: 500px;
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(90, 158, 111, 0.12), transparent 70%);
       filter: blur(80px);
       pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 1; max-width: 800px; }
-    .hero-logo {
-      width: 200px; height: auto;
-      margin-bottom: 2.5rem;
-      animation: floatIn 800ms var(--ease-smooth) both;
-      filter: drop-shadow(0 8px 24px rgba(26, 42, 58, 0.08));
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, 100%);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 2.5rem;
+      align-items: center;
     }
+
+    .hero-copy {
+      background: rgba(253, 250, 245, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 28px;
+      padding: 2.4rem;
+      box-shadow: 0 18px 48px rgba(26, 42, 58, 0.08);
+    }
+
     .hero h1 {
       font-family: 'Fraunces', serif;
-      font-weight: 800; font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+      font-weight: 800;
+      font-size: clamp(2.5rem, 5.5vw, 4.2rem);
       letter-spacing: -0.03em;
-      line-height: 1.12;
-      margin-bottom: 1.25rem;
+      line-height: 1.04;
+      margin-bottom: 1rem;
       animation: fadeInUp 600ms 200ms var(--ease-smooth) both;
     }
+
     .hero h1 .accent {
-      background: linear-gradient(135deg, var(--sky-deep), var(--sky), var(--green));
+      background: linear-gradient(135deg, var(--green-deep), var(--green), var(--sky-deep));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .hero p {
-      font-size: 1.15rem; line-height: 1.7;
-      color: var(--ink-soft);
-      max-width: 580px; margin: 0 auto 2.5rem;
-      animation: fadeInUp 600ms 400ms var(--ease-smooth) both;
+
+    .hero-subtitle {
+      font-size: 1.18rem;
+      line-height: 1.6;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      animation: fadeInUp 600ms 350ms var(--ease-smooth) both;
     }
+
+    .hero p {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      max-width: 650px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 600ms 450ms var(--ease-smooth) both;
+    }
+
     .hero-buttons {
-      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
       animation: fadeInUp 600ms 600ms var(--ease-smooth) both;
     }
+
     .tag {
       display: inline-block;
       padding: 0.35rem 0.9rem;
       border-radius: 100px;
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      margin-bottom: 1.25rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.15rem;
       animation: fadeInUp 600ms 100ms var(--ease-smooth) both;
     }
-    .tag-green { background: var(--green-soft); color: var(--green); }
 
-    /* ─── IMPACT STATS ─── */
+    .tag-green {
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--green-deep);
+      border: 1px solid rgba(90, 158, 111, 0.18);
+    }
+
+    .hero-photo-card {
+      position: relative;
+      min-height: 520px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(26, 42, 58, 0.16);
+      animation: floatIn 800ms var(--ease-smooth) both;
+    }
+
+    .hero-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-photo-caption {
+      position: absolute;
+      left: 1.25rem;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      background: rgba(26, 42, 58, 0.6);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 1rem 1.1rem;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
     .impact-bar {
       background: var(--white);
       border-top: 1px solid rgba(26, 42, 58, 0.05);
       border-bottom: 1px solid rgba(26, 42, 58, 0.05);
       padding: 3.5rem 2rem;
     }
+
     .impact-grid {
-      max-width: 900px; margin: 0 auto;
+      max-width: 980px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       text-align: center;
     }
+
     .impact-stat h3 {
       font-family: 'Fraunces', serif;
       font-weight: 800;
@@ -204,260 +324,421 @@
       line-height: 1;
       margin-bottom: 0.4rem;
     }
+
     .impact-stat h3 .num-sky { color: var(--sky-deep); }
     .impact-stat h3 .num-green { color: var(--green); }
-    .impact-stat h3 .num-heart { color: var(--heart); }
+    .impact-stat h3 .num-earth { color: var(--earth); }
+
     .impact-stat p {
-      color: var(--ink-soft); font-size: 0.88rem; font-weight: 500;
+      color: var(--ink-soft);
+      font-size: 0.88rem;
+      font-weight: 500;
     }
 
-    /* ─── SECTIONS ─── */
     section { padding: 6rem 2rem; }
     .container { max-width: 1100px; margin: 0 auto; }
+
     .section-label {
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--sky-deep);
       margin-bottom: 0.75rem;
     }
+
     .section-title {
       font-family: 'Fraunces', serif;
-      font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.5rem);
-      letter-spacing: -0.02em; line-height: 1.2;
+      font-weight: 700;
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
       margin-bottom: 1rem;
     }
+
     .section-desc {
       color: var(--ink-soft);
-      font-size: 1.05rem; line-height: 1.7;
-      max-width: 560px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 650px;
     }
 
-    /* ─── MISSION ─── */
     .mission { background: var(--cream); }
+
     .mission-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: center;
     }
+
     .mission-visual {
-      background: linear-gradient(135deg, var(--sky-pale), var(--sky-light));
+      background: linear-gradient(135deg, var(--sky-pale), var(--green-soft));
       border-radius: 24px;
-      aspect-ratio: 4/3;
-      display: flex; align-items: center; justify-content: center; flex-direction: column;
-      gap: 0.75rem;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
       box-shadow: 0 20px 60px rgba(126, 200, 227, 0.2);
+      padding: 2rem;
+      text-align: center;
     }
+
     .mission-visual .ndis-badge {
       background: var(--white);
       border-radius: 14px;
       padding: 1rem 1.5rem;
-      font-weight: 700; font-size: 1.1rem;
+      font-weight: 700;
+      font-size: 1rem;
       color: var(--ink);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-      display: flex; align-items: center; gap: 0.6rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
+
     .mission-visual .ndis-badge .dot {
-      width: 10px; height: 10px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: var(--green);
     }
-    .mission-visual .emoji-row { font-size: 3.5rem; margin-top: 0.5rem; }
-    .mission-text .section-desc { margin-bottom: 1.5rem; }
-    .mission-text ul {
-      list-style: none; margin-bottom: 2rem;
+
+    .mission-visual .emoji-row { font-size: 3.5rem; }
+
+    .mission-quote {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      line-height: 1.45;
+      max-width: 24rem;
+      color: var(--ink);
     }
+
+    .mission-text .section-desc { margin-bottom: 1.2rem; }
+
+    .mission-text ul {
+      list-style: none;
+      margin: 1.8rem 0 2rem;
+    }
+
     .mission-text li {
       padding: 0.5rem 0;
       font-size: 0.95rem;
       color: var(--ink-soft);
-      display: flex; align-items: flex-start; gap: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
     }
+
     .mission-text li .check {
       flex-shrink: 0;
-      width: 22px; height: 22px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: var(--green-soft);
       color: var(--green);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem; font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
       margin-top: 1px;
     }
 
-    /* ─── PILLARS ─── */
     .pillars { background: var(--white); }
-    .pillars-header { text-align: center; margin-bottom: 4rem; }
-    .pillars-header .section-desc { margin: 0 auto; }
-    .pillars-grid {
+    .pillars-header,
+    .programs-header,
+    .supporters-header,
+    .contact-header,
+    .donations-header { text-align: center; margin-bottom: 3.5rem; }
+
+    .pillars-header .section-desc,
+    .programs-header .section-desc,
+    .supporters-header .section-desc,
+    .contact-header .section-desc,
+    .donations-header .section-desc { margin: 0 auto; }
+
+    .pillars-grid,
+    .involvement-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
     }
-    .pillar-card {
+
+    .pillar-card,
+    .involvement-card {
       background: var(--cream);
       border: 1px solid rgba(26, 42, 58, 0.05);
       border-radius: var(--radius);
-      padding: 2.25rem 2rem;
+      padding: 2.1rem 1.9rem;
       transition: transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth);
     }
-    .pillar-card:hover {
+
+    .pillar-card:hover,
+    .involvement-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
     }
+
     .pillar-icon {
-      width: 52px; height: 52px;
+      width: 52px;
+      height: 52px;
       border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.5rem;
       margin-bottom: 1.25rem;
     }
+
     .pillar-icon.sky { background: linear-gradient(135deg, var(--sky-pale), rgba(126, 200, 227, 0.3)); }
     .pillar-icon.green { background: linear-gradient(135deg, var(--green-soft), rgba(90, 158, 111, 0.25)); }
+    .pillar-icon.earth { background: linear-gradient(135deg, var(--earth-soft), rgba(184, 121, 77, 0.22)); }
     .pillar-icon.heart { background: linear-gradient(135deg, var(--heart-soft), rgba(226, 91, 106, 0.2)); }
-    .pillar-card h3 {
+
+    .pillar-card h3,
+    .involvement-card h3 {
       font-family: 'Fraunces', serif;
-      font-weight: 700; font-size: 1.2rem;
+      font-weight: 700;
+      font-size: 1.2rem;
       margin-bottom: 0.6rem;
     }
-    .pillar-card p {
+
+    .pillar-card p,
+    .involvement-card p {
       color: var(--ink-soft);
-      font-size: 0.92rem; line-height: 1.65;
+      font-size: 0.94rem;
+      line-height: 1.7;
     }
 
-    /* ─── DONATION TIERS ─── */
     .donations { background: var(--cream); }
-    .donations-header { text-align: center; margin-bottom: 3.5rem; }
-    .donations-header .section-desc { margin: 0 auto; }
-    .donation-tiers {
-      max-width: 900px; margin: 0 auto;
+
+    .programs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: stretch;
     }
-    .tier-card {
+
+    .program-copy,
+    .program-notes {
       background: var(--white);
       border: 1px solid rgba(26, 42, 58, 0.06);
-      border-radius: var(--radius);
+      border-radius: 24px;
       padding: 2rem;
-      text-align: center;
-      transition: transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth), border-color 300ms;
-    }
-    .tier-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
-      border-color: var(--sky);
-    }
-    .tier-card.featured {
-      border-color: var(--heart);
-      position: relative;
-    }
-    .tier-card.featured::before {
-      content: 'MOST POPULAR';
-      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-      background: var(--heart);
-      color: var(--white);
-      padding: 0.2rem 0.8rem;
-      border-radius: 100px;
-      font-size: 0.6rem; font-weight: 700;
-      letter-spacing: 0.06em;
-    }
-    .tier-amount {
-      font-family: 'Fraunces', serif;
-      font-weight: 800;
-      font-size: 2.2rem;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.25rem;
-    }
-    .tier-name {
-      font-weight: 600; font-size: 1rem;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-    }
-    .tier-desc {
-      color: var(--ink-soft);
-      font-size: 0.88rem; line-height: 1.6;
-      margin-bottom: 1.5rem;
+      box-shadow: 0 12px 36px rgba(26, 42, 58, 0.05);
     }
 
-    /* ─── SPONSORS ─── */
+    .program-copy p,
+    .program-notes p {
+      color: var(--ink-soft);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .program-notes ul {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .program-notes li {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 0.95rem 1rem;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
     .supporters {
       background: var(--white);
       text-align: center;
     }
-    .supporters-header { margin-bottom: 3rem; }
-    .supporters-header .section-desc { margin: 0 auto; }
-    .sponsor-grid {
-      max-width: 800px; margin: 0 auto;
-      display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 1.5rem;
-    }
-    .sponsor-slot {
-      width: 160px; height: 90px;
-      background: var(--cream);
-      border: 1.5px dashed rgba(26, 42, 58, 0.1);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.78rem; font-weight: 600;
-      color: var(--ink-soft);
-      letter-spacing: 0.02em;
-      transition: border-color 200ms, background 200ms;
-    }
-    .sponsor-slot:hover {
-      border-color: var(--sky);
-      background: var(--sky-pale);
+
+    .vision-card {
+      max-width: 920px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(77, 168, 204, 0.12), rgba(90, 158, 111, 0.18));
+      border: 1px solid rgba(26, 42, 58, 0.06);
+      border-radius: 28px;
+      padding: 3rem;
+      text-align: left;
+      box-shadow: 0 18px 48px rgba(26, 42, 58, 0.06);
     }
 
-    /* ─── CTA ─── */
+    .vision-card p {
+      color: var(--ink-soft);
+      font-size: 1.03rem;
+      line-height: 1.8;
+      max-width: 760px;
+      margin-bottom: 1rem;
+    }
+
     .cta { padding: 6rem 2rem; }
+
     .cta-card {
-      max-width: 900px; margin: 0 auto;
+      max-width: 980px;
+      margin: 0 auto;
       background: linear-gradient(135deg, var(--heart), #c94b5a);
       border-radius: 28px;
       padding: 4rem 3rem;
       text-align: center;
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
       box-shadow: 0 20px 60px rgba(226, 91, 106, 0.25);
     }
+
     .cta-card::before {
       content: '';
-      position: absolute; top: -60px; right: -60px;
-      width: 200px; height: 200px;
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.08);
     }
+
     .cta-card::after {
       content: '';
-      position: absolute; bottom: -80px; left: -40px;
-      width: 250px; height: 250px;
+      position: absolute;
+      bottom: -80px;
+      left: -40px;
+      width: 250px;
+      height: 250px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.05);
     }
+
     .cta-card h2 {
       font-family: 'Fraunces', serif;
-      font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
       color: var(--white);
       letter-spacing: -0.02em;
       margin-bottom: 1rem;
-      position: relative; z-index: 1;
+      position: relative;
+      z-index: 1;
     }
+
     .cta-card p {
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 1.05rem; line-height: 1.6;
-      max-width: 500px; margin: 0 auto 2rem;
-      position: relative; z-index: 1;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto 2rem;
+      position: relative;
+      z-index: 1;
     }
+
     .cta-card .btn-white { position: relative; z-index: 1; }
 
-    /* ─── FOOTER ─── */
+    .contact {
+      background: linear-gradient(180deg, var(--cream) 0%, rgba(224, 242, 249, 0.45) 100%);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2rem;
+    }
+
+    .contact-card,
+    .contact-form {
+      background: var(--white);
+      border: 1px solid rgba(26, 42, 58, 0.06);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 12px 36px rgba(26, 42, 58, 0.05);
+    }
+
+    .contact-card p {
+      color: var(--ink-soft);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.3rem;
+    }
+
+    .contact-list li {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 1rem;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .contact-list span {
+      display: block;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 0.25rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-field { display: grid; gap: 0.45rem; }
+    .form-field.full { grid-column: 1 / -1; }
+
+    .form-field label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      border: 1px solid rgba(26, 42, 58, 0.12);
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      font: inherit;
+      color: var(--ink);
+      background: var(--cream);
+      transition: border-color 150ms var(--ease-smooth), box-shadow 150ms var(--ease-smooth);
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--sky-deep);
+      box-shadow: 0 0 0 4px rgba(126, 200, 227, 0.18);
+    }
+
+    .form-field textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
     footer {
       padding: 3rem 2rem 2rem;
       border-top: 1px solid rgba(26, 42, 58, 0.06);
+      background: var(--white);
     }
+
     .footer-inner {
-      max-width: 900px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: flex-start;
-      flex-wrap: wrap; gap: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
     }
+
     .footer-brand-block .footer-brand {
       font-family: 'Fraunces', serif;
       font-weight: 700;
@@ -465,281 +746,459 @@
       font-size: 1.05rem;
       margin-bottom: 0.35rem;
     }
+
     .footer-brand-block p {
-      color: var(--ink-soft); font-size: 0.82rem; line-height: 1.6;
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      line-height: 1.7;
     }
+
     .footer-links { display: flex; gap: 3rem; }
+
     .footer-links div h4 {
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--ink); margin-bottom: 0.6rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
     }
+
     .footer-links div a {
-      display: block; text-decoration: none;
-      color: var(--ink-soft); font-size: 0.85rem;
+      display: block;
+      text-decoration: none;
+      color: var(--ink-soft);
+      font-size: 0.85rem;
       padding: 0.2rem 0;
       transition: color 150ms;
     }
+
     .footer-links div a:hover { color: var(--ink); }
+
     .footer-bottom {
-      max-width: 900px; margin: 2rem auto 0;
+      max-width: 960px;
+      margin: 2rem auto 0;
       padding-top: 1.5rem;
       border-top: 1px solid rgba(26, 42, 58, 0.05);
       text-align: center;
     }
+
     .footer-bottom p {
-      color: var(--ink-soft); font-size: 0.78rem;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
     }
+
     .nfp-badge {
-      display: inline-flex; align-items: center; gap: 0.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
       background: var(--green-soft);
       color: var(--green);
       padding: 0.3rem 0.8rem;
       border-radius: 100px;
-      font-size: 0.7rem; font-weight: 600;
+      font-size: 0.7rem;
+      font-weight: 700;
       margin-bottom: 0.75rem;
     }
 
-    /* ─── ANIMATIONS ─── */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      to { opacity: 1; transform: translateY(0); }
     }
+
     @keyframes floatIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.9); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .reveal {
-      opacity: 0; transform: translateY(24px);
+      opacity: 0;
+      transform: translateY(24px);
       transition: opacity 600ms var(--ease-smooth), transform 600ms var(--ease-smooth);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── MOBILE ─── */
-    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
     .mobile-toggle span {
-      display: block; width: 22px; height: 2px;
-      background: var(--ink); margin: 5px 0;
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      margin: 5px 0;
       border-radius: 2px;
     }
 
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .mobile-toggle { display: block; }
-      .mission-grid { grid-template-columns: 1fr; gap: 2rem; }
+    @media (max-width: 900px) {
+      .hero-content,
+      .mission-grid,
+      .programs-grid,
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .hero-photo-card { min-height: 380px; }
       .mission-visual { order: -1; }
-      .hero { padding: 7rem 1.5rem 4rem; min-height: auto; }
-      .hero-logo { width: 150px; }
-      .cta-card { padding: 3rem 1.5rem; }
-      section { padding: 4rem 1.5rem; }
-      .impact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; align-items: flex-start; }
+
+      .mobile-toggle { display: block; margin-top: 0.1rem; }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 1rem;
+        right: 1rem;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: rgba(253, 250, 245, 0.98);
+        border: 1px solid rgba(26, 42, 58, 0.08);
+        border-radius: 18px;
+        box-shadow: 0 18px 48px rgba(26, 42, 58, 0.12);
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li,
+      .nav-links a { width: 100%; }
+
+      .hero {
+        padding: 7rem 1.25rem 4rem;
+        min-height: auto;
+      }
+
+      .hero-copy,
+      .cta-card,
+      .vision-card,
+      .contact-card,
+      .contact-form,
+      .program-copy,
+      .program-notes { padding: 1.6rem; }
+
+      section { padding: 4rem 1.25rem; }
+
+      .impact-grid,
+      .form-grid { grid-template-columns: 1fr; }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
       .footer-links { gap: 2rem; }
-      .sponsor-slot { width: 140px; height: 78px; }
     }
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
   <nav id="nav">
-    <a href="#" class="nav-brand">Sheep & Giggles</a>
-    <ul class="nav-links">
-      <li><a href="#mission">Our Mission</a></li>
-      <li><a href="#pillars">What We Do</a></li>
-      <li><a href="#donate">Support Us</a></li>
-      <li><a href="#sponsors">Sponsors</a></li>
-      <li><a href="#donate" class="btn btn-donate">&#9829;&ensp;Donate</a></li>
+    <a href="#home" class="nav-brand">Sheeps and Giggles</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#mission">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#involved">Get Involved</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#involved" class="btn btn-donate">Support the Farm</a></li>
     </ul>
-    <button class="mobile-toggle" aria-label="Menu">
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="hero-content">
-      <img src="245A25C0-6B02-4653-B53F-61D8577744CB.png" alt="Sheep & Giggles Inc Logo" class="hero-logo">
-      <span class="tag tag-green">Registered Not-for-Profit &nbsp;&middot;&nbsp; NDIS Provider</span>
-      <h1>Meaningful Work.<br><span class="accent">Real Opportunities.</span></h1>
-      <p>Sheep &amp; Giggles is a not-for-profit farm in Fingal on the Mornington Peninsula, creating supported employment and life-changing opportunities for NDIS participants &mdash; powered by the generosity of our community.</p>
-      <div class="hero-buttons">
-        <a href="#donate" class="btn btn-donate">&#9829;&ensp;Make a Donation</a>
-        <a href="#mission" class="btn btn-outline">Our Mission</a>
+      <div class="hero-copy">
+        <span class="tag tag-green">Community Farm Project</span>
+        <h1>Sheeps and Giggles <span class="accent">Community Farm</span></h1>
+        <p class="hero-subtitle">A place where people, nature and practical skills grow together.</p>
+        <p>
+          Sheeps and Giggles Community Farm is a not-for-profit community project where people come together to build a working farm, learn practical life skills and care for the land. Through gardening, permaculture, animal care and environmental restoration we create opportunities for people to connect with nature and develop confidence, skills and community.
+        </p>
+        <div class="hero-buttons">
+          <a href="#involved" class="btn btn-primary">Get Involved</a>
+          <a href="#support" class="btn btn-outline">Support the Farm</a>
+        </div>
+      </div>
+      <div class="hero-photo-card" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1200&q=80" alt="Open farmland with sheep grazing in the sun">
+        <div class="hero-photo-caption">
+          Building a welcoming farm where gardening, animal care, restoration work and practical learning happen side by side.
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- IMPACT BAR -->
   <div class="impact-bar reveal">
     <div class="impact-grid">
       <div class="impact-stat">
-        <h3><span class="num-green">100%</span></h3>
-        <p>Not-for-Profit</p>
+        <h3><span class="num-green">People</span></h3>
+        <p>Hands-on participation and shared learning</p>
       </div>
       <div class="impact-stat">
-        <h3><span class="num-sky">NDIS</span></h3>
-        <p>Registered Provider</p>
+        <h3><span class="num-sky">Nature</span></h3>
+        <p>Gardens, habitat care and environmental restoration</p>
       </div>
       <div class="impact-stat">
-        <h3><span class="num-heart">&#9829;</span></h3>
-        <p>Community Funded</p>
+        <h3><span class="num-earth">Skills</span></h3>
+        <p>Practical work that builds confidence and capability</p>
       </div>
     </div>
   </div>
 
-  <!-- MISSION -->
   <section class="mission" id="mission">
     <div class="container">
       <div class="mission-grid">
         <div class="mission-text reveal">
           <p class="section-label">Our Mission</p>
-          <h2 class="section-title">A Farm Where Everyone Belongs</h2>
+          <h2 class="section-title">A welcoming farm where connection and practical learning meet.</h2>
           <p class="section-desc">
-            We believe every person deserves the dignity of meaningful work and genuine connection. Sheep &amp; Giggles partners with the NDIS to provide supported employment, skill-building, and social opportunities in a welcoming farm environment.
+            Our mission is to create a welcoming community farm where people can reconnect with nature, learn practical skills and participate in meaningful work on the land.
+          </p>
+          <p class="section-desc">
+            We believe that working with soil, plants and animals can help people build confidence, independence and a deeper connection to the natural world.
           </p>
           <ul>
-            <li><span class="check">&#10003;</span> Supported employment pathways for NDIS participants</li>
-            <li><span class="check">&#10003;</span> Hands-on farm skills &mdash; animal care, horticulture &amp; more</li>
-            <li><span class="check">&#10003;</span> Social connection and community belonging</li>
-            <li><span class="check">&#10003;</span> A safe, inclusive space to build confidence &amp; independence</li>
+            <li><span class="check">&#10003;</span> Inclusive community participation through hands-on farm work</li>
+            <li><span class="check">&#10003;</span> Gardening, permaculture and animal care in a real working environment</li>
+            <li><span class="check">&#10003;</span> Practical skill building that supports confidence and independence</li>
+            <li><span class="check">&#10003;</span> Caring for land, habitat and local ecosystems together</li>
           </ul>
-          <a href="#donate" class="btn btn-primary">Support Our Work</a>
+          <a href="#programs" class="btn btn-primary">Explore Our Programs</a>
         </div>
         <div class="mission-visual reveal">
-          <div class="ndis-badge"><span class="dot"></span> NDIS Registered Provider</div>
-          <div class="emoji-row">&#x1F411;&#x1F33F;&#x1F91D;</div>
+          <div class="ndis-badge"><span class="dot"></span> Community-led and not-for-profit</div>
+          <div class="emoji-row">&#127793; &#128017; &#127807;</div>
+          <p class="mission-quote">"Meaningful work on the land can grow skills, confidence and community."</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT WE DO -->
-  <section class="pillars" id="pillars">
+  <section class="pillars" id="programs">
     <div class="container">
       <div class="pillars-header reveal">
         <p class="section-label">What We Do</p>
-        <h2 class="section-title">Building Futures on the Farm</h2>
-        <p class="section-desc">Every dollar donated helps us expand our programs and welcome more participants into meaningful, supported roles.</p>
+        <h2 class="section-title">Practical programs shaped by land, animals and community.</h2>
+        <p class="section-desc">
+          The farm combines real projects, practical learning and community connection so people can contribute in meaningful ways while building useful skills.
+        </p>
       </div>
       <div class="pillars-grid">
         <div class="pillar-card reveal">
-          <div class="pillar-icon sky">&#x1F411;</div>
-          <h3>Supported Employment</h3>
-          <p>Real jobs, real responsibility. Participants work alongside our team caring for animals, maintaining paddocks, and running daily farm operations.</p>
+          <div class="pillar-icon green">&#127793;</div>
+          <h3>Horticulture &amp; Permaculture</h3>
+          <p>Learning to grow food, build edible gardens and care for the land through seasonal, hands-on growing projects.</p>
         </div>
         <div class="pillar-card reveal">
-          <div class="pillar-icon green">&#x1F331;</div>
-          <h3>Skill Development</h3>
-          <p>From animal husbandry to teamwork and time management &mdash; participants gain practical, transferable skills in a supportive setting.</p>
+          <div class="pillar-icon sky">&#128017;</div>
+          <h3>Farm Animal Care</h3>
+          <p>Working with chickens, ducks, sheep and other animals while learning responsible, everyday animal care.</p>
         </div>
         <div class="pillar-card reveal">
-          <div class="pillar-icon heart">&#x1F917;</div>
-          <h3>Community &amp; Wellbeing</h3>
-          <p>More than a workplace. Sheep &amp; Giggles is a community where participants build friendships, confidence, and a sense of purpose.</p>
+          <div class="pillar-icon earth">&#127807;</div>
+          <h3>Environmental Restoration</h3>
+          <p>Revegetation, habitat creation and caring for local ecosystems so the farm supports wildlife as well as people.</p>
+        </div>
+        <div class="pillar-card reveal">
+          <div class="pillar-icon heart">&#128736;</div>
+          <h3>Practical Life Skills</h3>
+          <p>Fencing, landscaping, garden building and real farm projects that build confidence and employment skills.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DONATION TIERS -->
-  <section class="donations" id="donate">
+  <section class="donations" id="community-programs">
     <div class="container">
-      <div class="donations-header reveal">
-        <p class="section-label">Support Us</p>
-        <h2 class="section-title">Your Generosity Changes Lives</h2>
-        <p class="section-desc">Every contribution directly funds jobs, training programs, and farm operations. All donations are tax-deductible.</p>
+      <div class="programs-header reveal">
+        <p class="section-label">Community Programs</p>
+        <h2 class="section-title">Participation that supports belonging, learning and contribution.</h2>
+        <p class="section-desc">
+          The farm provides opportunities for people to participate in hands-on projects while learning valuable life and employment skills.
+        </p>
       </div>
-      <div class="donation-tiers">
-        <div class="tier-card reveal">
-          <div class="tier-amount" style="color: var(--sky-deep);">$25</div>
-          <div class="tier-name">Feed the Flock</div>
-          <p class="tier-desc">Covers a week of animal feed, keeping our farm running and participants learning.</p>
-          <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">Donate $25</a>
+      <div class="programs-grid">
+        <div class="program-copy reveal">
+          <p>Participants may assist with gardening, building garden beds, fencing, landscaping, animal care and restoring the land.</p>
+          <p>Programs are designed to welcome volunteers, community members and people seeking disability-inclusive opportunities to learn, contribute and connect in a practical outdoor setting.</p>
         </div>
-        <div class="tier-card featured reveal">
-          <div class="tier-amount" style="color: var(--heart);">$100</div>
-          <div class="tier-name">Grow a Future</div>
-          <p class="tier-desc">Funds a full week of supported employment for one NDIS participant on the farm.</p>
-          <a href="#" class="btn btn-donate" style="width: 100%; justify-content: center;">Donate $100</a>
-        </div>
-        <div class="tier-card reveal">
-          <div class="tier-amount" style="color: var(--green);">$500</div>
-          <div class="tier-name">Champion Sponsor</div>
-          <p class="tier-desc">Become a named sponsor. Your logo displayed on-site and on our website for 12 months.</p>
-          <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">Become a Sponsor</a>
+        <div class="program-notes reveal">
+          <p>Community participation can include:</p>
+          <ul>
+            <li>Volunteer days and shared working bees</li>
+            <li>Disability-inclusive farm activities</li>
+            <li>Skill building through practical projects</li>
+            <li>Partnerships with local groups and organisations</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SPONSORS -->
-  <section class="supporters" id="sponsors">
+  <section class="supporters" id="vision">
     <div class="container">
       <div class="supporters-header reveal">
-        <p class="section-label">Our Supporters</p>
-        <h2 class="section-title">Proudly Supported By</h2>
-        <p class="section-desc">These generous businesses and individuals help make our mission possible. Your logo could be here too.</p>
+        <p class="section-label">Our Vision</p>
+        <h2 class="section-title">A thriving community farm where people, animals and nature flourish together.</h2>
+        <p class="section-desc">
+          We are building for the long term, with space for learning, habitat, food growing and meaningful participation to expand over time.
+        </p>
       </div>
-      <div class="sponsor-grid reveal">
-        <div class="sponsor-slot">Your Logo Here</div>
-        <div class="sponsor-slot">Your Logo Here</div>
-        <div class="sponsor-slot">Your Logo Here</div>
-        <div class="sponsor-slot">Your Logo Here</div>
-        <div class="sponsor-slot">Your Logo Here</div>
-        <div class="sponsor-slot">Your Logo Here</div>
-        <div class="sponsor-slot">Your Logo Here</div>
-        <div class="sponsor-slot">Your Logo Here</div>
+      <div class="vision-card reveal">
+        <p>Our vision is to develop Sheeps and Giggles into a thriving community farm where people, animals and nature can flourish together.</p>
+        <p>Over time we aim to expand the farm with gardens, wildlife habitat areas and a small animal sanctuary while continuing to create opportunities for learning, connection and community participation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars" id="involved">
+    <div class="container">
+      <div class="donations-header reveal" id="support">
+        <p class="section-label">Get Involved</p>
+        <h2 class="section-title">There are practical ways to back the farm and be part of its growth.</h2>
+        <p class="section-desc">
+          Whether you volunteer time, build partnerships or provide financial support, each contribution helps the farm become a stronger community asset.
+        </p>
+      </div>
+      <div class="involvement-grid">
+        <div class="involvement-card reveal">
+          <h3>Volunteer</h3>
+          <p>Join garden days, animal care tasks and on-the-ground farm projects alongside the community.</p>
+        </div>
+        <div class="involvement-card reveal">
+          <h3>Community Partnerships</h3>
+          <p>Work with the farm through schools, local groups, businesses and organisations that share the vision.</p>
+        </div>
+        <div class="involvement-card reveal">
+          <h3>Support the Farm</h3>
+          <p>Help fund materials, infrastructure, gardens and programs that keep the farm growing.</p>
+        </div>
+        <div class="involvement-card reveal">
+          <h3>Donate</h3>
+          <p>Financial contributions help create new opportunities for practical learning, inclusion and care for the land.</p>
+        </div>
       </div>
       <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
-        <a href="#donate" class="btn btn-outline">Become a Sponsor</a>
+        <a href="#contact" class="btn btn-donate">Join the Community</a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta">
     <div class="cta-card reveal">
-      <h2>Every Dollar Makes a Difference</h2>
-      <p>Help us create more jobs, welcome more participants, and grow a farm where everyone belongs. Your support changes lives.</p>
-      <a href="#donate" class="btn btn-white">&#9829;&ensp;Donate Now</a>
+      <h2>Help Grow a Farm Built on Community</h2>
+      <p>Support the next stage of Sheeps and Giggles Community Farm as we grow gardens, create habitat, care for animals and build more opportunities for people to participate.</p>
+      <a href="#contact" class="btn btn-white">Contact Us</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-header reveal">
+        <p class="section-label">Contact Us</p>
+        <h2 class="section-title">Start a conversation with the farm.</h2>
+        <p class="section-desc">
+          Use the form below to ask about volunteering, partnerships, programs or ways to support the project.
+        </p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.8rem;">Community Connections</h3>
+          <p>We welcome enquiries from volunteers, community members, local organisations and supporters who want to be involved in the future of the farm.</p>
+          <ul class="contact-list">
+            <li>Volunteer Opportunities<span>Working bees, farm support and seasonal projects</span></li>
+            <li>Partnership Enquiries<span>Schools, community groups, disability-inclusive programs and local businesses</span></li>
+            <li>General Contact<span>hello@sheepsandgiggles.org.au</span></li>
+          </ul>
+        </div>
+        <form class="contact-form reveal">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name">
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com">
+            </div>
+            <div class="form-field full">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" placeholder="How would you like to get involved?">
+            </div>
+            <div class="form-field full">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us a little about your interest in the farm."></textarea>
+            </div>
+            <div class="form-field full">
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="footer-inner">
       <div class="footer-brand-block">
-        <div class="nfp-badge">&#9829; Registered Not-for-Profit</div>
-        <p class="footer-brand">Sheep &amp; Giggles Inc</p>
-        <p>Fingal, Mornington Peninsula<br>Est. 2026</p>
+        <div class="nfp-badge">Community Project</div>
+        <p class="footer-brand">Sheeps and Giggles Community Farm</p>
+        <p>Operated by Sheeps and Giggles Farm Inc.<br>Australian Not-for-Profit Organisation</p>
       </div>
       <div class="footer-links">
         <div>
           <h4>Navigate</h4>
-          <a href="#mission">Our Mission</a>
-          <a href="#pillars">What We Do</a>
-          <a href="#donate">Support Us</a>
-          <a href="#sponsors">Sponsors</a>
+          <a href="#home">Home</a>
+          <a href="#mission">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#involved">Get Involved</a>
+          <a href="#contact">Contact</a>
         </div>
         <div>
-          <h4>Connect</h4>
-          <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
-          <a href="mailto:hello@sheepandgiggles.com.au">Email Us</a>
+          <h4>Next Update</h4>
+          <a href="#footer-note">Footer can later change to</a>
+          <a href="#footer-note">Registered Australian Charity</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Sheep &amp; Giggles Inc. All rights reserved. &nbsp;&middot;&nbsp; All donations are tax-deductible.</p>
+    <div class="footer-bottom" id="footer-note">
+      <p>&copy; 2026 Sheeps and Giggles Community Farm. Operated by Sheeps and Giggles Farm Inc. Australian Not-for-Profit Organisation.</p>
     </div>
   </footer>
 
   <script>
     const nav = document.getElementById('nav');
+    const navLinks = document.getElementById('nav-links');
+    const mobileToggle = document.getElementById('mobile-toggle');
+
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      });
     });
 
     const reveals = document.querySelectorAll('.reveal');
@@ -751,7 +1210,8 @@
         }
       });
     }, { threshold: 0.12 });
-    reveals.forEach(el => observer.observe(el));
+
+    reveals.forEach((el) => observer.observe(el));
   </script>
 </body>
 </html>
