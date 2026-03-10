@@ -111,7 +111,25 @@ async function forwardToWeb3Forms(submission) {
     body: JSON.stringify(outboundPayload),
   });
 
-  const result = await web3FormsResponse.json();
+  const contentType = web3FormsResponse.headers.get("content-type") || "";
+  const rawBody = await web3FormsResponse.text();
+  let result = null;
+
+  if (contentType.includes("application/json")) {
+    try {
+      result = JSON.parse(rawBody);
+    } catch {
+      throw new Error("Web3Forms returned invalid JSON");
+    }
+  } else if (web3FormsResponse.status === 403) {
+    throw new Error(
+      "Web3Forms rejected the server-side request. Their docs require a paid plan and server IP safelisting for backend submissions."
+    );
+  } else {
+    const preview = rawBody.slice(0, 120).replace(/\s+/g, " ").trim();
+    throw new Error(`Web3Forms returned a non-JSON response (${web3FormsResponse.status}). ${preview}`);
+  }
+
   if (!web3FormsResponse.ok || !result.success) {
     throw new Error(result.message || result.error || "Unable to send enquiry");
   }
