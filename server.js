@@ -225,7 +225,7 @@ const server = http.createServer(async (request, response) => {
   }
 
   if (request.method === "GET") {
-    if (url.pathname.startsWith("/photos/") || url.pathname.startsWith("/gallery/")) {
+    if (url.pathname.startsWith("/photos/") || url.pathname.startsWith("/gallery/") || url.pathname.startsWith("/logos/")) {
       serveStaticAsset(response, url.pathname);
       return;
     }
