@@ -9,6 +9,7 @@ COPY image5.webp ./
 COPY gallery.html ./
 COPY photos ./photos
 COPY gallery ./gallery
+COPY logos ./logos
 
 EXPOSE 3000
 
