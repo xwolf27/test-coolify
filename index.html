@@ -360,9 +360,24 @@
       background: rgba(253, 250, 245, 0.78);
       border: 1px solid rgba(26, 42, 58, 0.05);
       border-radius: 24px;
-      padding: 1.2rem;
+      padding: 1.35rem;
     }
     .gi-card-shell .program-card-tag { margin-bottom: 1.1rem; }
+    .gi-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .gi-card-grid .involvement-card {
+      min-height: 0;
+      padding: 1.5rem 1.35rem;
+      border-radius: 18px;
+    }
+    .gi-card-grid .involvement-card h3 {
+      font-size: 1.1rem;
+      line-height: 1.15;
+      margin-bottom: 0.7rem;
+    }
+    .gi-card-grid .involvement-card p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
 
     /* ─── FARM WISHLIST (NEW) ─── */
     .wishlist { background: var(--cream); }
@@ -494,6 +509,7 @@
 
     @media (max-width: 1200px) {
       .involvement-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gi-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 900px) {
@@ -504,6 +520,7 @@
       .hero-photo-card { min-height: 460px; max-width: none; }
       .mission-visual { order: -1; }
       .involvement-grid { grid-template-columns: 1fr; }
+      .gi-card-grid { grid-template-columns: 1fr; }
       .involvement-card { min-height: auto; }
       .founding-grid { grid-template-columns: repeat(2, 1fr); }
       .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
@@ -818,7 +835,7 @@
         </div>
         <div class="gi-card-shell reveal">
           <span class="program-card-tag">How you can be involved</span>
-          <div class="involvement-grid">
+          <div class="gi-card-grid">
             <div class="involvement-card"><h3>Volunteer</h3><p>Join garden days, animal care tasks and on-the-ground farm projects alongside the community.</p></div>
             <div class="involvement-card"><h3>Community Partnerships</h3><p>Work with the farm through schools, local groups, businesses and organisations that share the vision.</p></div>
             <div class="involvement-card"><h3>Support the Farm</h3><p>Help fund materials, infrastructure, gardens and programs that keep the farm growing.</p></div>
@@ -960,9 +977,8 @@
             <li>General Contact<span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caa2afa6a6a58ab9a2afafbab9aba4aeada3adada6afb9e4a5b8ade4abbf">[email&#160;protected]</a></span></li>
           </ul>
         </div>
-        <form class="contact-form reveal" id="contact-form">
+        <form class="contact-form reveal" id="contact-form" action="https://api.web3forms.com/submit" method="POST" accept-charset="UTF-8">
           <input type="hidden" name="access_key" value="d36fdd49-bfd3-4341-8bff-8380d17d3fc5">
-          <input type="hidden" name="subject" value="New enquiry from Sheeps and Giggles Community Farm">
           <input type="hidden" name="from_name" value="Sheeps and Giggles Community Farm Website">
           <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display: none;">
           <div class="form-grid">

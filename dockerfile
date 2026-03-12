@@ -7,6 +7,7 @@ RUN apk add --no-cache wget
 COPY package.json ./
 COPY server.js ./
 COPY index.html ./
+COPY merch.html ./
 COPY image5.webp ./
 COPY gallery.html ./
 COPY photos ./photos

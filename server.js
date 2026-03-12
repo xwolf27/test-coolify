@@ -240,7 +240,9 @@ const server = http.createServer(async (request, response) => {
 
 server.listen(port, host, () => {
   if (!web3FormsAccessKey) {
-    console.warn("WEB3FORMS_ACCESS_KEY is not set. Contact submissions will fail until it is configured.");
+    console.warn(
+      "WEB3FORMS_ACCESS_KEY is not set. The optional server-side /api/contact endpoint will fail, but browser-side Web3Forms submissions can still work."
+    );
   }
   console.log(`Server running at http://${host}:${port}`);
 });
