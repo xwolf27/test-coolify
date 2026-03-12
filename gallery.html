@@ -57,21 +57,33 @@
       color: var(--ink);
       text-decoration: none;
       letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-brand img {
+      height: 38px;
+      width: 38px;
+      border-radius: 50%;
+      object-fit: cover;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.35rem;
       align-items: center;
       list-style: none;
+      flex-wrap: nowrap;
     }
 
     .nav-links a {
       text-decoration: none;
       color: var(--ink-soft);
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       font-weight: 500;
       transition: color 150ms;
+      white-space: nowrap;
     }
 
     .nav-links a:hover { color: var(--ink); }
@@ -253,7 +265,7 @@
       .gallery { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1180px) {
       nav { padding: 1rem 1.25rem; align-items: flex-start; }
       .mobile-toggle { display: block; margin-top: 0.1rem; }
 
@@ -283,14 +295,16 @@
 </head>
 <body>
   <nav>
-    <a href="/" class="nav-brand">Sheeps and Giggles</a>
+    <a href="/#home" class="nav-brand"><img src="/logos/sheeps-and-giggles.jpeg" alt="Sheeps and Giggles Farm Inc logo">Sheeps and Giggles</a>
     <ul class="nav-links" id="nav-links">
       <li><a href="/">Home</a></li>
-      <li><a href="/#mission">About</a></li>
+      <li><a href="/#our-story">Our Story</a></li>
       <li><a href="/#programs">Programs</a></li>
-      <li><a href="/#involved">Get Involved</a></li>
+      <li><a href="/#get-involved">Get Involved</a></li>
+      <li><a href="/merch.html">Merchandise</a></li>
+      <li><a href="/gallery.html">Gallery</a></li>
       <li><a href="/#contact">Contact</a></li>
-      <li><a href="/#involved" class="btn-donate">Support the Farm</a></li>
+      <li><a href="/#get-involved" class="btn-donate">Get Involved</a></li>
     </ul>
     <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>

@@ -73,17 +73,19 @@
 
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 1.35rem;
       align-items: center;
       list-style: none;
+      flex-wrap: nowrap;
     }
 
     .nav-links a {
       text-decoration: none;
       color: var(--ink-soft);
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       font-weight: 500;
       transition: color 150ms;
+      white-space: nowrap;
     }
 
     .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); }
@@ -303,8 +305,7 @@
       margin-bottom: 0.45rem;
     }
 
-    @media (max-width: 900px) {
-      .hero-shell, .items-grid, .note-grid { grid-template-columns: 1fr; }
+    @media (max-width: 1180px) {
       nav { padding: 1rem 1.25rem; align-items: flex-start; position: relative; }
       .mobile-toggle { display: block; margin-top: 0.1rem; z-index: 102; position: relative; }
       .nav-links {
@@ -324,6 +325,10 @@
       }
       .nav-links.open { display: flex; }
       .nav-links li, .nav-links a { width: 100%; }
+    }
+
+    @media (max-width: 900px) {
+      .hero-shell, .items-grid, .note-grid { grid-template-columns: 1fr; }
       .page-hero { padding-top: 7.5rem; }
       .hero-card, .coming-soon-card, .item-card, .note-card, .footer-card { padding: 1.5rem; }
       .container { width: min(1120px, calc(100% - 2rem)); }
@@ -334,11 +339,14 @@
   <nav>
     <a href="/index.html#home" class="nav-brand"><img src="/logos/sheeps-and-giggles.jpeg" alt="Sheeps and Giggles Farm Inc logo">Sheeps and Giggles</a>
     <ul class="nav-links" id="nav-links">
+      <li><a href="/index.html#home">Home</a></li>
       <li><a href="/index.html#our-story">Our Story</a></li>
       <li><a href="/index.html#programs">Programs</a></li>
+      <li><a href="/index.html#get-involved">Get Involved</a></li>
+      <li><a href="/merch.html">Merchandise</a></li>
       <li><a href="/gallery.html">Gallery</a></li>
       <li><a href="/index.html#contact">Contact</a></li>
-      <li><a href="/index.html#support-farm" class="btn btn-donate">Support the Farm</a></li>
+      <li><a href="/index.html#get-involved" class="btn btn-donate">Get Involved</a></li>
     </ul>
     <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
@@ -354,7 +362,7 @@
           <p>We want merchandise to help raise funds for the farm, build local awareness and give supporters another simple way to back the project.</p>
           <p>This page is a placeholder for the first small Sheeps and Giggles merchandise range. Items are not available to order yet, but the direction is taking shape.</p>
           <div class="hero-actions">
-            <a href="/index.html#support-farm" class="btn btn-donate">Support the Farm</a>
+            <a href="/index.html#get-involved" class="btn btn-donate">Support the Farm</a>
             <a href="/index.html#contact" class="btn btn-outline">Ask About Getting Involved</a>
           </div>
         </div>
