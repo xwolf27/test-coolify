@@ -153,6 +153,97 @@
     .pillar-card h3 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.6rem; }
     .pillar-card p { color: var(--ink-soft); font-size: 0.94rem; line-height: 1.7; }
 
+    /* ─── STORY SECTIONS ─── */
+    .story-intro { background: var(--white); }
+    .story-intro-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr); gap: 2rem; align-items: stretch; }
+    .story-intro-card, .story-highlight-card, .story-timeline-card, .future-photos-card, .heidi-story-card {
+      background: var(--white);
+      border: 1px solid rgba(26, 42, 58, 0.06);
+      border-radius: 24px;
+      box-shadow: 0 12px 36px rgba(26, 42, 58, 0.05);
+    }
+    .story-intro-card {
+      padding: 2.5rem;
+      background: linear-gradient(135deg, rgba(224, 242, 249, 0.4), rgba(232, 245, 236, 0.55));
+    }
+    .story-intro-card p, .story-highlight-card p, .story-timeline-item p, .future-photos-card p, .heidi-story-card p { color: var(--ink-soft); line-height: 1.75; }
+    .story-intro-card p + p, .story-highlight-card p + p, .heidi-story-card p + p { margin-top: 1rem; }
+    .story-highlight-card {
+      padding: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: linear-gradient(180deg, rgba(253, 250, 245, 0.96), rgba(224, 242, 249, 0.32));
+    }
+    .story-stat {
+      display: grid;
+      gap: 0.35rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(26, 42, 58, 0.08);
+    }
+    .story-stat strong {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+    .story-stat span { color: var(--ink-soft); font-size: 0.9rem; }
+    .story-timeline { background: var(--cream); }
+    .story-timeline-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+    .story-timeline-card {
+      padding: 2.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .story-timeline-item { padding-bottom: 1.1rem; border-bottom: 1px solid rgba(26, 42, 58, 0.08); }
+    .story-timeline-item:last-child { padding-bottom: 0; border-bottom: none; }
+    .story-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.55rem;
+      color: var(--green-deep);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .story-kicker::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+    .story-timeline-item h3, .future-photos-card h3, .heidi-story-card h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.55rem;
+    }
+    .future-photos-card {
+      margin-top: 2rem;
+      padding: 1.5rem 1.7rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(126, 200, 227, 0.12), rgba(253, 250, 245, 0.92));
+    }
+    .future-photos-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      box-shadow: 0 8px 18px rgba(26, 42, 58, 0.08);
+      font-size: 1.4rem;
+    }
+
     /* ─── PROGRAMS (unchanged) ─── */
     .donations { background: var(--cream); }
     .programs-shell { max-width: 1240px; margin: 0 auto; }
@@ -201,11 +292,63 @@
     .ci-dot.green { background: var(--green); }
     .ci-dot.earth { background: var(--earth); }
     .ci-dot.heart { background: var(--heart); }
+    .heidi-story-card {
+      padding: 2.4rem;
+      background: linear-gradient(135deg, rgba(232, 245, 236, 0.88), rgba(253, 250, 245, 0.94));
+    }
+    .heidi-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--green-deep);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .heidi-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+    .heidi-quote {
+      margin: 1.35rem 0;
+      padding: 1.2rem 1.3rem;
+      border-left: 4px solid var(--green);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink);
+      font-family: 'Fraunces', serif;
+      font-size: 1.08rem;
+      line-height: 1.55;
+    }
 
-    /* ─── SUPPORT THE FARM (NEW) ─── */
+    /* ─── GET INVOLVED (MERGED) ─── */
     .support-farm { background: var(--white); }
-    .sf-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2.5rem; align-items: center; }
-    .sf-text .section-desc { margin-bottom: 1.5rem; }
+    .gi-header { text-align: center; margin-bottom: 3rem; }
+    .gi-header .section-desc { margin: 0 auto; }
+    .gi-grid { display: grid; grid-template-columns: minmax(320px, 0.95fr) minmax(0, 1.05fr); gap: 2rem; align-items: start; }
+    .gi-copy {
+      background: linear-gradient(180deg, rgba(253, 250, 245, 0.98), rgba(224, 242, 249, 0.3));
+      border: 1px solid rgba(26, 42, 58, 0.06);
+      border-radius: 24px;
+      padding: 2.25rem;
+      box-shadow: 0 12px 36px rgba(26, 42, 58, 0.05);
+    }
+    .gi-copy h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.8rem;
+    }
+    .gi-copy p { color: var(--ink-soft); line-height: 1.75; margin-bottom: 1.25rem; }
     .sf-ways { list-style: none; margin-bottom: 2rem; }
     .sf-ways li { padding: 0.55rem 0; font-size: 0.95rem; color: var(--ink-soft); display: flex; align-items: center; gap: 0.7rem; }
     .sf-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; }
@@ -213,15 +356,13 @@
     .sf-dot.s { background: var(--sky); }
     .sf-dot.e { background: var(--earth); }
     .sf-dot.h { background: var(--heart); }
-    .sf-visual {
-      background: linear-gradient(135deg, rgba(90, 158, 111, 0.1), rgba(77, 168, 204, 0.12));
-      border: 1px solid rgba(26, 42, 58, 0.06);
-      border-radius: 24px; padding: 3rem 2rem;
-      text-align: center;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+    .gi-card-shell {
+      background: rgba(253, 250, 245, 0.78);
+      border: 1px solid rgba(26, 42, 58, 0.05);
+      border-radius: 24px;
+      padding: 1.2rem;
     }
-    .sf-visual .big-emoji { font-size: 3.5rem; }
-    .sf-visual p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.6; max-width: 280px; }
+    .gi-card-shell .program-card-tag { margin-bottom: 1.1rem; }
 
     /* ─── FARM WISHLIST (NEW) ─── */
     .wishlist { background: var(--cream); }
@@ -356,7 +497,7 @@
     }
 
     @media (max-width: 900px) {
-      .hero-content, .mission-grid, .programs-grid, .contact-grid, .ci-grid, .sf-grid { grid-template-columns: 1fr; }
+      .hero-content, .mission-grid, .story-intro-grid, .story-timeline-grid, .programs-grid, .contact-grid, .ci-grid, .gi-grid { grid-template-columns: 1fr; }
       .hero-content { width: min(1120px, 100%); gap: 2rem; }
       .hero-copy { padding: 2.2rem 2rem; }
       .hero h1 { max-width: none; font-size: clamp(2.4rem, 7vw, 4rem); }
@@ -377,16 +518,17 @@
       .nav-links li, .nav-links a { width: 100%; }
       .hero { padding: 7rem 1.25rem 4rem; min-height: auto; }
       .hero h1 { max-width: none; line-height: 1.02; font-size: clamp(2.2rem, 11vw, 3.3rem); }
-      .hero-copy, .cta-card, .vision-card, .contact-card, .contact-form, .program-copy, .program-notes, .wishlist-card, .founding-card, .ps-inner { padding: 1.6rem; }
+      .hero-copy, .cta-card, .vision-card, .contact-card, .contact-form, .program-copy, .program-notes, .wishlist-card, .founding-card, .ps-inner, .story-intro-card, .story-highlight-card, .story-timeline-card, .heidi-story-card { padding: 1.6rem; }
       .hero-photo-card { min-height: 380px; border-radius: 28px; }
       .hero-photo-caption { left: 1rem; right: 1rem; bottom: 1rem; padding: 1rem 1.05rem; border-radius: 18px; font-size: 0.92rem; }
       section { padding: 4rem 1.25rem; }
       .impact-grid, .form-grid { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; align-items: center; text-align: center; }
       .footer-links { gap: 2rem; }
-      .wishlist-grid { grid-template-columns: 1fr; }
+      .wishlist-grid, .story-timeline-grid { grid-template-columns: 1fr; }
       .wishlist-item { padding: 1rem; }
       .wishlist-item .wi-icon { font-size: 1.3rem; }
+      .future-photos-card { grid-template-columns: 1fr; }
       .founding-grid { grid-template-columns: 1fr; }
       .sponsor-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
       .sponsor-slot { aspect-ratio: auto; min-height: 80px; padding: 0.75rem 0.5rem; font-size: 0.65rem; }
@@ -404,13 +546,13 @@
     <a href="#home" class="nav-brand"><img src="/logos/sheeps-and-giggles.jpeg" alt="Sheeps and Giggles Farm Inc logo">Sheeps and Giggles</a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#mission">About</a></li>
+      <li><a href="#our-story">Our Story</a></li>
       <li><a href="#programs">Programs</a></li>
-      <li><a href="#support-farm">Support</a></li>
-      <li><a href="#wishlist">Wishlist</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#get-involved">Get Involved</a></li>
+      <li><a href="/merch.html">Merchandise</a></li>
       <li><a href="/gallery.html">Gallery</a></li>
-      <li><a href="#support-farm" class="btn btn-donate">Support the Farm</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#get-involved" class="btn btn-donate">Get Involved</a></li>
     </ul>
     <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
@@ -432,8 +574,8 @@
         <!-- NEW: Compliant charity status -->
         <p class="status-line">Not-for-profit organisation with charity registration in progress.</p>
         <div class="hero-buttons">
-          <a href="#involved" class="btn btn-primary">Get Involved</a>
-          <a href="#support-farm" class="btn btn-outline">Support the Farm</a>
+          <a href="#get-involved" class="btn btn-primary">Get Involved</a>
+          <a href="#get-involved" class="btn btn-outline">Support the Farm</a>
         </div>
       </div>
       <div class="hero-photo-card" aria-hidden="true">
@@ -453,7 +595,33 @@
     </div>
   </div>
 
-  <!-- ═══ MISSION (unchanged) ═══ -->
+  <!-- ═══ OUR STORY INTRO ═══ -->
+  <section class="story-intro" id="our-story">
+    <div class="container">
+      <div class="story-intro-grid">
+        <div class="story-intro-card reveal">
+          <p class="section-label">Our Story</p>
+          <h2 class="section-title">A farm shaped by work, family and a bigger idea for community.</h2>
+          <p>Sheeps and Giggles Community Farm grew from a simple idea: creating a place where people, animals and nature could thrive together.</p>
+          <p>After years building a horticulture and landscaping business on the Mornington Peninsula, Simone and her daughter Zoe began searching for land where they could expand their work, grow food, care for animals and create opportunities for the community to reconnect with nature.</p>
+          <p>Today the farm is growing into a place where people can learn practical skills, build confidence and find belonging through working with the land.</p>
+        </div>
+        <aside class="story-highlight-card reveal" aria-label="Story highlights">
+          <div>
+            <p class="section-label">From Sorrento to Fingal</p>
+            <h3 class="section-title" style="font-size: clamp(1.55rem, 3vw, 2rem); margin-bottom: 0.8rem;">Built from lived experience, not just an idea on paper.</h3>
+            <p>The project grew out of real horticulture work, a family business, and a determination to make more room for people, animals and practical learning on the Mornington Peninsula.</p>
+          </div>
+          <div class="story-stat">
+            <strong>Growing through community</strong>
+            <span>The vision now includes land care, supported participation, animal care, working bees and long-term local partnerships.</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MISSION ═══ -->
   <section class="mission" id="mission">
     <div class="container">
       <div class="mission-grid">
@@ -481,7 +649,63 @@
     </div>
   </section>
 
-  <!-- ═══ WHAT WE DO (unchanged) ═══ -->
+  <!-- ═══ OUR STORY TIMELINE ═══ -->
+  <section class="story-timeline">
+    <div class="container">
+      <div class="centered-header reveal">
+        <p class="section-label">How It Grew</p>
+        <h2 class="section-title">The farm grew out of years of horticulture work and a search for more room to build something meaningful.</h2>
+        <p class="section-desc">What began as a local business has gradually expanded into a place for land care, learning, animals and community participation.</p>
+      </div>
+      <div class="story-timeline-grid">
+        <div class="story-timeline-card reveal">
+          <div class="story-timeline-item">
+            <span class="story-kicker">2016</span>
+            <h3>Home and Hosed begins</h3>
+            <p>Home and Hosed Gardens began as a small garden nursery and wine bar in Sorrento, offering locals a place to enjoy plants, gardens and a relaxed community atmosphere.</p>
+          </div>
+          <div class="story-timeline-item">
+            <span class="story-kicker">2019 to 2020</span>
+            <h3>The work shifts</h3>
+            <p>When COVID arrived, the retail nursery closed and the focus moved into garden maintenance and landscaping work across the Mornington Peninsula.</p>
+          </div>
+        </div>
+        <div class="story-timeline-card reveal">
+          <div class="story-timeline-item">
+            <span class="story-kicker">Following years</span>
+            <h3>Steady growth</h3>
+            <p>The business kept growing through regular garden clients and landscaping projects, but the original space no longer matched the scale of the long-term vision.</p>
+          </div>
+          <div class="story-timeline-item">
+            <span class="story-kicker">By 2024</span>
+            <h3>A shared need for space</h3>
+            <p>Simone wanted to expand the horticulture and landscaping business, while Zoe's Pawtsea dog training business also needed more room to grow.</p>
+          </div>
+        </div>
+        <div class="story-timeline-card reveal">
+          <div class="story-timeline-item">
+            <span class="story-kicker">Fingal</span>
+            <h3>Finding the property</h3>
+            <p>Together, Simone and Zoe searched for land where their work could expand and where something bigger could be created. After a determined search, they secured the property in Fingal.</p>
+          </div>
+          <div class="story-timeline-item">
+            <span class="story-kicker">The vision now</span>
+            <h3>More than a farm</h3>
+            <p>The property now makes room for horticulture, animal care, learning opportunities, community programs and the continued growth of Pawtsea, all with the aim of helping people reconnect with nature and practical skills.</p>
+          </div>
+        </div>
+      </div>
+      <div class="future-photos-card reveal">
+        <div class="future-photos-icon">&#128247;</div>
+        <div>
+          <h3>More farm life will be added over time</h3>
+          <p>As the project grows, the site will continue to include more photos of volunteers, gardening, animal care, working bees and community activities across the property.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT WE DO ═══ -->
   <section class="pillars" id="programs">
     <div class="container">
       <div class="centered-header reveal">
@@ -498,33 +722,31 @@
     </div>
   </section>
 
-  <!-- ═══ COMMUNITY IMPACT (NEW — Section 2) ═══ -->
+  <!-- ═══ COMMUNITY IMPACT ═══ -->
   <section class="community-impact" id="impact">
     <div class="container">
       <div class="centered-header reveal">
         <p class="section-label">Community Impact</p>
-        <h2 class="section-title">Creating pathways through nature, work and belonging.</h2>
-        <p class="section-desc">The farm supports people at different stages of life who are looking for connection, skills and a sense of purpose.</p>
+        <h2 class="section-title">Heidi's story helped shape what this farm could become.</h2>
+        <p class="section-desc">One practical opportunity on the land became the starting point for a wider vision about confidence, belonging and meaningful participation.</p>
       </div>
       <div class="ci-grid">
-        <div class="ci-card reveal">
-          <h3>Who We Support</h3>
-          <ul class="ci-list">
-            <li><span class="ci-dot sky"></span> People living with disability seeking meaningful activity</li>
-            <li><span class="ci-dot green"></span> Early school leavers looking for practical pathways</li>
-            <li><span class="ci-dot earth"></span> People needing supported work experience and life skills</li>
-            <li><span class="ci-dot heart"></span> Community members seeking connection with nature and others</li>
-            <li><span class="ci-dot sky"></span> Volunteers wanting to contribute to something meaningful</li>
-          </ul>
+        <div class="heidi-story-card reveal">
+          <span class="heidi-badge">Featured Impact Story</span>
+          <h3>How it all started with Heidi</h3>
+          <p>Heidi had completed her Certificate III in Agriculture and was eager to work with plants and farms, but after applying for more than 100 jobs she was still being turned away despite having the qualifications and motivation.</p>
+          <p>Eventually she posted on Facebook asking if anyone knew of opportunities in horticulture or farming. Simone saw the post and thought, "I have a farm and I run a garden maintenance and landscaping business, surely I can help."</p>
+          <div class="heidi-quote">What started with one person asking for a chance has grown into the vision for Sheeps and Giggles Community Farm.</div>
+          <p>Heidi soon met with Simone and her support workers from Campbell Page. Together they created a structure that allowed Heidi to begin working on the farm in a supportive environment, and that one opportunity helped reveal what the farm could offer other people too.</p>
         </div>
         <div class="ci-card reveal">
-          <h3>What We Provide</h3>
+          <h3>What that opportunity inspired</h3>
           <ul class="ci-list">
             <li><span class="ci-dot green"></span> Supported farm work experience in a real outdoor setting</li>
-            <li><span class="ci-dot earth"></span> Horticulture and permaculture training programs</li>
-            <li><span class="ci-dot sky"></span> Animal care programs with hands-on responsibility</li>
-            <li><span class="ci-dot heart"></span> Employment pathway development and confidence building</li>
-            <li><span class="ci-dot green"></span> Community participation through working bees and events</li>
+            <li><span class="ci-dot earth"></span> Practical horticulture, landscaping and land-care learning</li>
+            <li><span class="ci-dot sky"></span> Confidence building through useful work and shared responsibility</li>
+            <li><span class="ci-dot heart"></span> Community participation through working bees, volunteering and local partnerships</li>
+            <li><span class="ci-dot green"></span> A place where people can find belonging while reconnecting with nature</li>
           </ul>
         </div>
       </div>
@@ -574,14 +796,18 @@
     </div>
   </section>
 
-  <!-- ═══ SUPPORT THE FARM (NEW — Section 1) ═══ -->
-  <section class="support-farm" id="support-farm">
+  <!-- ═══ GET INVOLVED (MERGED) ═══ -->
+  <section class="support-farm" id="get-involved">
     <div class="container">
-      <div class="sf-grid">
-        <div class="sf-text reveal">
-          <p class="section-label">Support the Farm</p>
-          <h2 class="section-title">There are many ways to help this project grow.</h2>
-          <p class="section-desc">Whether it's time, materials, skills or financial support — every contribution goes directly into building a stronger community farm.</p>
+      <div class="gi-header reveal">
+        <p class="section-label">Get Involved</p>
+        <h2 class="section-title">There are practical ways to back the farm and help this project grow.</h2>
+        <p class="section-desc">Whether you volunteer time, build partnerships, donate materials or provide financial support, each contribution helps the farm become a stronger community asset.</p>
+      </div>
+      <div class="gi-grid">
+        <div class="gi-copy reveal">
+          <h3>Ways to help right now</h3>
+          <p>Support can be practical, local and immediate. Every contribution helps create more opportunities for people on the land.</p>
           <ul class="sf-ways">
             <li><span class="sf-dot g"></span> Donations of equipment, tools and materials</li>
             <li><span class="sf-dot s"></span> Sponsoring infrastructure — fencing, shelters, gardens</li>
@@ -589,12 +815,19 @@
             <li><span class="sf-dot h"></span> Corporate and community partnerships</li>
             <li><span class="sf-dot g"></span> Financial contributions to help build the programs</li>
           </ul>
-          <a href="#contact" class="btn btn-donate">Become a Supporter</a>
         </div>
-        <div class="sf-visual reveal">
-          <div class="big-emoji">&#x1F331;&#x1F91D;&#x1F3E1;</div>
-          <p>Every piece of support helps us create more opportunities for people on the land.</p>
+        <div class="gi-card-shell reveal">
+          <span class="program-card-tag">How you can be involved</span>
+          <div class="involvement-grid">
+            <div class="involvement-card"><h3>Volunteer</h3><p>Join garden days, animal care tasks and on-the-ground farm projects alongside the community.</p></div>
+            <div class="involvement-card"><h3>Community Partnerships</h3><p>Work with the farm through schools, local groups, businesses and organisations that share the vision.</p></div>
+            <div class="involvement-card"><h3>Support the Farm</h3><p>Help fund materials, infrastructure, gardens and programs that keep the farm growing.</p></div>
+            <div class="involvement-card"><h3>Donate</h3><p>Financial contributions help create new opportunities for practical learning, inclusion and care for the land.</p></div>
+          </div>
         </div>
+      </div>
+      <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
+        <a href="#contact" class="btn btn-donate">Join the Community</a>
       </div>
     </div>
   </section>
@@ -657,7 +890,7 @@
         <div class="centered-header" style="margin-bottom: 1rem;">
           <p class="section-label">Our Partners</p>
           <h2 class="section-title">Proudly supported by local businesses who believe in community.</h2>
-          <p class="section-desc">We are seeking founding partners to help establish the farm. Each partnership is named and recognised permanently on-site.</p>
+          <p class="section-desc">We are seeking founding partners to help establish the farm, and this section will continue to grow as more local businesses and supporters come on board.</p>
         </div>
         <p class="ps-quote" style="font-family: 'Fraunces', serif; font-style: italic; font-size: 1.02rem; color: var(--ink-soft); line-height: 1.6; max-width: 600px; margin: 0 auto 2.5rem; text-align: center;">"This project is supported by local businesses who believe in creating opportunities for people and community."</p>
         <div class="founding-grid">
@@ -696,26 +929,6 @@
           <a href="#contact" class="btn btn-amber">Become a Founding Partner</a>
           <a href="#contact" class="btn btn-outline">Enquire About Partnerships</a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ GET INVOLVED (unchanged) ═══ -->
-  <section class="pillars" id="involved">
-    <div class="container">
-      <div class="donations-header reveal" id="support">
-        <p class="section-label">Get Involved</p>
-        <h2 class="section-title">There are practical ways to back the farm and be part of its growth.</h2>
-        <p class="section-desc">Whether you volunteer time, build partnerships or provide financial support, each contribution helps the farm become a stronger community asset.</p>
-      </div>
-      <div class="involvement-grid">
-        <div class="involvement-card reveal"><h3>Volunteer</h3><p>Join garden days, animal care tasks and on-the-ground farm projects alongside the community.</p></div>
-        <div class="involvement-card reveal"><h3>Community Partnerships</h3><p>Work with the farm through schools, local groups, businesses and organisations that share the vision.</p></div>
-        <div class="involvement-card reveal"><h3>Support the Farm</h3><p>Help fund materials, infrastructure, gardens and programs that keep the farm growing.</p></div>
-        <div class="involvement-card reveal"><h3>Donate</h3><p>Financial contributions help create new opportunities for practical learning, inclusion and care for the land.</p></div>
-      </div>
-      <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
-        <a href="#contact" class="btn btn-donate">Join the Community</a>
       </div>
     </div>
   </section>
@@ -777,16 +990,19 @@
         <div>
           <h4>Navigate</h4>
           <a href="#home">Home</a>
-          <a href="#mission">About</a>
+          <a href="#our-story">Our Story</a>
           <a href="#programs">Programs</a>
-          <a href="#involved">Get Involved</a>
+          <a href="/merch.html">Merchandise</a>
+          <a href="/gallery.html">Gallery</a>
+          <a href="#get-involved">Get Involved</a>
           <a href="#contact">Contact</a>
         </div>
         <div>
           <h4>Support</h4>
-          <a href="#support-farm">Support the Farm</a>
+          <a href="#get-involved">Support the Farm</a>
           <a href="#wishlist">Farm Wishlist</a>
           <a href="#sponsors">Our Partners</a>
+          <a href="#impact">Heidi's Story</a>
         </div>
       </div>
     </div>
@@ -877,4 +1093,15 @@
         const result = await response.json();
         if (!response.ok || !result.success) throw new Error(result.error || 'Something went wrong.');
         formStatus.textContent = 'Thanks. Your enquiry has been sent.';
-        formStatus.dataset.state = 'su
+        formStatus.dataset.state = 'success';
+        contactForm.reset();
+      } catch (error) {
+        formStatus.textContent = error.message || 'Sorry, we could not send your message right now.';
+        formStatus.dataset.state = 'error';
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

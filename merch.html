@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merchandise - Sheeps and Giggles Community Farm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sky: #7ec8e3;
+      --sky-pale: #e0f2f9;
+      --sky-deep: #4da8cc;
+      --ink: #1a2a3a;
+      --ink-soft: rgba(26, 42, 58, 0.7);
+      --white: #ffffff;
+      --cream: #fdfaf5;
+      --green: #5a9e6f;
+      --green-deep: #3d7b54;
+      --green-soft: #e8f5ec;
+      --earth: #b8794d;
+      --earth-soft: #f5e8dd;
+      --amber: #d4910a;
+      --amber-soft: #fdf4e0;
+      --radius: 20px;
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, rgba(224, 242, 249, 0.36) 0%, var(--cream) 24%, var(--cream) 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(253, 250, 245, 0.84);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid rgba(26, 42, 58, 0.06);
+    }
+
+    .nav-brand {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-brand img {
+      height: 38px;
+      width: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 150ms;
+    }
+
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.78rem 1.65rem;
+      border-radius: 12px;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: transform 200ms var(--ease-smooth), box-shadow 200ms var(--ease-smooth), background 200ms var(--ease-smooth);
+    }
+
+    .btn-donate {
+      background: linear-gradient(135deg, var(--green), var(--green-deep));
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(90, 158, 111, 0.3);
+    }
+
+    .btn-donate:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(90, 158, 111, 0.45); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid rgba(26, 42, 58, 0.15); }
+    .btn-outline:hover { background: rgba(126, 200, 227, 0.12); border-color: var(--sky); transform: translateY(-2px); }
+
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; }
+
+    .container { width: min(1120px, calc(100% - 2.5rem)); margin: 0 auto; }
+
+    .page-hero {
+      padding: 8.5rem 0 3rem;
+    }
+
+    .hero-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .hero-card, .coming-soon-card, .item-card, .note-card, .footer-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(26, 42, 58, 0.06);
+      border-radius: 28px;
+      box-shadow: 0 14px 40px rgba(26, 42, 58, 0.06);
+    }
+
+    .hero-card {
+      padding: 2.8rem;
+      background: linear-gradient(135deg, rgba(224, 242, 249, 0.64), rgba(232, 245, 236, 0.72));
+    }
+
+    .section-label {
+      display: inline-block;
+      margin-bottom: 0.85rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sky-deep);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Fraunces', serif;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.02;
+      margin-bottom: 1rem;
+    }
+
+    .hero-card p, .coming-soon-card p, .item-card p, .note-card p, .footer-card p {
+      color: var(--ink-soft);
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 1.6rem;
+    }
+
+    .coming-soon-card {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: linear-gradient(180deg, rgba(253, 250, 245, 0.94), rgba(253, 244, 224, 0.78));
+    }
+
+    .coming-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      align-self: flex-start;
+      padding: 0.38rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--amber);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .coming-pill::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--amber);
+    }
+
+    .coming-soon-card strong {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: var(--ink);
+    }
+
+    main section { padding: 0 0 2rem; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.3rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.85rem, 4vw, 2.5rem);
+      margin-bottom: 0.85rem;
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .item-card {
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .item-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      background: var(--sky-pale);
+      font-size: 1.45rem;
+    }
+
+    .item-card:nth-child(2) .item-icon { background: var(--green-soft); }
+    .item-card:nth-child(3) .item-icon { background: var(--earth-soft); }
+
+    .item-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .note-card {
+      padding: 1.8rem;
+    }
+
+    .note-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .sticker-copy {
+      margin-top: 0.85rem;
+      padding: 1rem 1.1rem;
+      border-radius: 16px;
+      background: rgba(224, 242, 249, 0.42);
+      color: var(--ink);
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      padding: 1rem 0 3rem;
+    }
+
+    .footer-card {
+      padding: 1.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.45rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-shell, .items-grid, .note-grid { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.25rem; align-items: flex-start; position: relative; }
+      .mobile-toggle { display: block; margin-top: 0.1rem; z-index: 102; position: relative; }
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 1rem;
+        right: 1rem;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: rgba(253, 250, 245, 0.98);
+        border: 1px solid rgba(26, 42, 58, 0.08);
+        border-radius: 18px;
+        box-shadow: 0 18px 48px rgba(26, 42, 58, 0.12);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li, .nav-links a { width: 100%; }
+      .page-hero { padding-top: 7.5rem; }
+      .hero-card, .coming-soon-card, .item-card, .note-card, .footer-card { padding: 1.5rem; }
+      .container { width: min(1120px, calc(100% - 2rem)); }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/index.html#home" class="nav-brand"><img src="/logos/sheeps-and-giggles.jpeg" alt="Sheeps and Giggles Farm Inc logo">Sheeps and Giggles</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/index.html#our-story">Our Story</a></li>
+      <li><a href="/index.html#programs">Programs</a></li>
+      <li><a href="/gallery.html">Gallery</a></li>
+      <li><a href="/index.html#contact">Contact</a></li>
+      <li><a href="/index.html#support-farm" class="btn btn-donate">Support the Farm</a></li>
+    </ul>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+    <section class="page-hero">
+      <div class="container hero-shell">
+        <div class="hero-card">
+          <p class="section-label">Merchandise</p>
+          <h1>Community merchandise is on the way.</h1>
+          <p>We want merchandise to help raise funds for the farm, build local awareness and give supporters another simple way to back the project.</p>
+          <p>This page is a placeholder for the first small Sheeps and Giggles merchandise range. Items are not available to order yet, but the direction is taking shape.</p>
+          <div class="hero-actions">
+            <a href="/index.html#support-farm" class="btn btn-donate">Support the Farm</a>
+            <a href="/index.html#contact" class="btn btn-outline">Ask About Getting Involved</a>
+          </div>
+        </div>
+        <aside class="coming-soon-card" aria-label="Coming soon">
+          <span class="coming-pill">Coming Soon</span>
+          <div>
+            <strong>Merchandise will launch when the first fundraising run is ready.</strong>
+            <p>For now, this page gives supporters a preview of the ideas being developed and the role merchandise will play in community fundraising.</p>
+          </div>
+          <div>
+            <strong>Where it may appear first</strong>
+            <p>Expect merchandise to show up at community events, farm days and working bees before any broader release.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Planned Items</p>
+          <h2>Simple pieces that support the farm and spread the word.</h2>
+          <p>These early ideas focus on practical, easy-to-share items that help fund the project while building recognition across the Mornington Peninsula.</p>
+        </div>
+        <div class="items-grid">
+          <article class="item-card">
+            <div class="item-icon">&#129506;</div>
+            <h3>Sheeps and Giggles hats</h3>
+            <p>A simple cap or hat option for supporters, volunteers and community members who want to represent the farm in everyday life.</p>
+          </article>
+          <article class="item-card">
+            <div class="item-icon">&#128085;</div>
+            <h3>Sheeps and Giggles T-shirts</h3>
+            <p>T-shirts are planned as a practical community item for events, working bees and supporters who want to help the project stay visible.</p>
+          </article>
+          <article class="item-card">
+            <div class="item-icon">&#128663;</div>
+            <h3>Bumper stickers</h3>
+            <p>A low-cost awareness item designed as a simple fundraiser and a way to spread the farm story locally. Indicative price: around $5 each.</p>
+            <div class="sticker-copy">"Just for Sheep and Giggles - Fingal, Mornington Peninsula"</div>
+          </article>
+        </div>
+
+        <div class="note-grid">
+          <article class="note-card">
+            <h3>Fundraising first</h3>
+            <p>The merchandise range is intended to support the farm directly. The goal is modest, community-focused fundraising rather than a full retail store.</p>
+          </article>
+          <article class="note-card">
+            <h3>Creative help welcome</h3>
+            <p>If helping with merchandise design or the creative direction is something you would genuinely enjoy, the farm would love to hear from you.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-card">
+        <div>
+          <h3>Sheeps and Giggles Community Farm</h3>
+          <p>Merchandise is still in development, but the goal is clear: practical fundraising items that help the project grow and strengthen community awareness.</p>
+        </div>
+        <a href="/index.html#our-story" class="btn btn-outline">Back to Our Story</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+</html>

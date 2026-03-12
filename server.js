@@ -20,6 +20,7 @@ const mimeTypes = {
 const files = {
   "/": { file: "index.html", type: "text/html; charset=utf-8" },
   "/index.html": { file: "index.html", type: "text/html; charset=utf-8" },
+  "/merch.html": { file: "merch.html", type: "text/html; charset=utf-8" },
   "/image5.webp": { file: "image5.webp", type: "image/webp" },
   "/gallery.html": { file: "gallery.html", type: "text/html; charset=utf-8" },
 };
